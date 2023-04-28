@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'lexend';
+    src: url('/font/Lexend/Lexend-VariableFont_wght.ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+container {
+    flex: 1;
+    background-color: '#2f4858';
+    align-items: 'center';
+    justify-content: 'center'
+  }
+
+  header {
+    height: 80;
+    width: '100%';
+    align-items: 'center';
+    justify-content: 'center'
+  }
+  titleContainer {
+    flex-direction: 'row';
+    align-items: 'center';
+    justify-content: 'center';
+  }
+  title{
+    font-size: 20;
+    font-weight: 'bold';
+    margin-top: 30;
+    color: '#FFF';
+    font-family: 'lexent';
+  }
+  circle{
+    width: 20;
+    height: 20;
+    background-color: '#FFF';
+    border-radius: 10;
+    margin-left: 5
+  }
+  box{
+    height: 220;
+    width: 150;
+    align-items: 'center';
+    justify-content: 'flex-end';
+    flex-direction: 'column-reverse'
+  }
+  box1{
+    height: 160;
+    width: 300;
+    background-color: '#9EE493';
+    margin-top: 20px;
+    margin-bottom: 20px
+  }
+  box2a {
+    background-color: '#336699';
+    margin-right: 5
+  }
+  box2b {
+    background-color: '#DAF7DC';
+    margin-left: 5
+  }
+  box3 {
+    width: 300;
+    height: 150;
+    background-color: '#86BBD8';
+    margin-top: 20
+  }
+  row{
+    flex-direction: 'row';
+    align-items: 'center';
+    justify-content: 'center';
+    margin-top: 20px;
+    margin-bottom: 20px
+  }
+  boxText {
+    margin-top: 7;
+    font-size: 24;
+    font-weight: 'bold';
+    text-align: 'center';
+    color: '#000';
+    font-family: 'lexent'
+  }
