@@ -36,7 +36,9 @@ export default function App(navigation) {
        </View>
       </View>
       <View style={[styles.box, styles.box1]}>
+      <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/reporte")} }>
         <Text style={styles.boxText}>Reporte Diario</Text>
+      </Pressable>
       </View>
       <View style={styles.row}>
         <Pressable style={[styles.box, styles.box2a]} onPress={()=>{router.push("/camera")} }>
