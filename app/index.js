@@ -36,16 +36,16 @@ export default function App(navigation) {
         <Text style={styles.boxText}>Reporte Diario</Text>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box2a]} onPress={()=>{router.push("/camera")}}>
+        <Pressable style={[styles.box, styles.box2a]} onPress={()=>{router.push("/camera")} }>
           <Text style={styles.boxText}>Foto Scan</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box2b]} onPress={()=>{router.push("/inputManual")}}>
+        <Pressable style={[styles.box, styles.box2b]} onPress={()=>{router.push("/inputManual")} }>
             <Text style={styles.boxText}>Input Manual</Text>
         </Pressable>
       </View>
-      <View style={[styles.box, styles.box3]}>
-        <Text style={styles.boxText}>Box 3</Text>
-      </View>
+      <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/calendarScreen")} }>
+            <Text style={styles.boxText}>Box 3</Text>
+        </Pressable>
       <StatusBar style="auto" />
     </View>
   );

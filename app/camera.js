@@ -105,7 +105,8 @@ const styles=StyleSheet.create({...baseStyles,...{
   imageContainer:{
     flex:3.5,
     width:"90%",
-    height:"100%"
+    height:"100%",
+    elevation:4,
   },
   blackBox:{
     flex:1,
