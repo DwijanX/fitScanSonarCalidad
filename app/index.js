@@ -44,7 +44,7 @@ export default function App(navigation) {
         </Pressable>
       </View>
       <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/calendarScreen")} }>
-            <Text style={styles.boxText}>Box 3</Text>
+            <Text style={styles.boxText}>Mi Diario</Text>
         </Pressable>
       <StatusBar style="auto" />
     </View>
