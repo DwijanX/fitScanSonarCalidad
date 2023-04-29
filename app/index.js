@@ -9,7 +9,7 @@ SplashScreen.preventAutoHideAsync();
 
 
 export default function App(navigation) {
-  
+  const router=useRouter()
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
     'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
@@ -36,9 +36,9 @@ export default function App(navigation) {
         <Text style={styles.boxText}>Reporte Diario</Text>
       </View>
       <View style={styles.row}>
-        <View style={[styles.box, styles.box2a]}>
+        <Pressable style={[styles.box, styles.box2a]} onPress={()=>{router.push("/camera")}}>
           <Text style={styles.boxText}>Foto Scan</Text>
-        </View>
+        </Pressable>
         <Pressable style={[styles.box, styles.box2b]} onPress={()=>{router.push("/inputManual")}}>
             <Text style={styles.boxText}>Input Manual</Text>
         </Pressable>
