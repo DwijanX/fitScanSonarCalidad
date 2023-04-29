@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { StyleSheet, Text, View,Pressable } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
-
+import { useRouter } from 'expo-router';
 SplashScreen.preventAutoHideAsync();
 
-export default function App() {
+
+export default function App(navigation) {
+  
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
     'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
@@ -36,9 +39,9 @@ export default function App() {
         <View style={[styles.box, styles.box2a]}>
           <Text style={styles.boxText}>Foto Scan</Text>
         </View>
-        <View style={[styles.box, styles.box2b]}>
-          <Text style={styles.boxText}>Input Manual</Text>
-        </View>
+        <Pressable style={[styles.box, styles.box2b]} onPress={()=>{router.push("/inputManual")}}>
+            <Text style={styles.boxText}>Input Manual</Text>
+        </Pressable>
       </View>
       <View style={[styles.box, styles.box3]}>
         <Text style={styles.boxText}>Box 3</Text>
