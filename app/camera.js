@@ -25,7 +25,14 @@ export default function camera() {
     }); 
   }
   const sendPhotoToAnalyze = async () => {
+    if (image) {
+      router.push({
+        pathname: "/infoScan",
+        state: { image }
+      });
+    }
   }
+
   const refreshPhoto = async () => {
     setImage(null)
   }
