@@ -27,8 +27,12 @@
     "react-native-screens": "~3.20.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.7",
+<<<<<<< HEAD
+    "expo-file-system": "~15.2.2"
+=======
     "react-router-dom": "^6.11.0",
     "state-pool": "^0.9.0"
+>>>>>>> ed76467c6968c7e059adde99aea55ea95c71266c
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

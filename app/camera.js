@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable , StyleSheet, Text, Image, View,Button } from 'react-native';
 import baseStyles from './styles/baseStyles'
 import Ionicons from '@expo/vector-icons/Ionicons'
-
+import sendPhotoToAnalyze from './request';
 export default function camera() {
   const [cameraType, setcameraType] = useState(CameraType.back);
   const [cameraPermission, setCameraPermission] = Camera.useCameraPermissions();
@@ -24,13 +24,9 @@ export default function camera() {
       }
     }); 
   }
-  const sendPhotoToAnalyze = async () => {
-    if (image) {
-      router.push({
-        pathname: "/infoScan",
-        state: { image }
-      });
-    }
+  const sendPhotoToAnalyze1 = async () => {
+    answer=await sendPhotoToAnalyze(image)
+    setImage(answer["srcimg"])
   }
 
   const refreshPhoto = async () => {
@@ -40,6 +36,7 @@ export default function camera() {
     if (!cameraRef) return
     try{
     const photo = await cameraRef.current.takePictureAsync()
+    console.log(photo);
     setImage(photo.uri)
     }
     catch(e)
@@ -81,7 +78,7 @@ export default function camera() {
             <Pressable style={[styles.cameraButton,styles.noButton]} onPress={refreshPhoto}>
               <Ionicons name="close-circle-outline" size={32}></Ionicons>
             </Pressable >
-            <Pressable style={styles.cameraButton} onPress={sendPhotoToAnalyze}>
+            <Pressable style={styles.cameraButton} onPress={sendPhotoToAnalyze1}>
               <Ionicons name="checkmark-circle" size={32}></Ionicons>
             </Pressable >
           </View>
