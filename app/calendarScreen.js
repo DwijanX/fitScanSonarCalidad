@@ -2,14 +2,21 @@ import {React,useState} from 'react';
 import { View, Text,Pressable,StyleSheet,Modal } from 'react-native';
 import baseStyles from './styles/baseStyles'
 import { Calendar } from 'react-native-calendars';
+import { Redirect,useRouter  } from 'expo-router';
+import dateScreen from './dateScreen';
 
 
 
 export default function calendarScreen() {
     const [showModal,setShowModal]=useState(false)
+    const router=useRouter()
 
     const eachDayFunction=(date)=>{
-        console.log(date);
+        
+        router.replace(href={
+            pathname:'/dateScreen',
+            params:{"date":date.dateString}
+        });
     }
     return (
     <View style={styles.mainContainer }>
