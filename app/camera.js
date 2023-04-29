@@ -28,6 +28,7 @@ export default function camera() {
     answer=await sendPhotoToAnalyze(image)
     setImage(answer["srcimg"])
   }
+
   const refreshPhoto = async () => {
     setImage(null)
   }

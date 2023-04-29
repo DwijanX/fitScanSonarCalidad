@@ -6,7 +6,7 @@ import { useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 
-function InputManual() {
+function User() {
   const router=useRouter()
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
@@ -17,7 +17,6 @@ function InputManual() {
 
   const [nombre, setNombre] = useState('');
   const [calorias, setCalorias] = useState('');
-  const [ingredientes, setIngredientes] = useState([]);
 
   
   const sendFood = () => {
@@ -32,7 +31,7 @@ function InputManual() {
               
               <Ionicons name="arrow-back" size={32}></Ionicons>
           </Pressable >
-          <Text style={[styles.Title3,styles.pageTitle]} title="test">Input Manual</Text>
+          <Text style={[styles.Title3,styles.pageTitle]} title="test">   Usuario</Text>
         </View>
       <View style={styles.box}>
         <Text style={styles.label}>Nombre</Text>
@@ -40,34 +39,27 @@ function InputManual() {
           style={styles.input}
           onChangeText={setNombre}
           value={nombre}
-          placeholder="Nombre del platillo"
+          placeholder="Tu nombre que quieras usar"
         />
       </View>
       <View style={styles.box}>
+        <Text style={styles.bigLabel}>Tu numero de calorias diarias depende de tu peso, altura, edad y estilo de vida; consultar con un nutricionista para mayor información</Text>
         <Text style={styles.label}>Calorías</Text>
         <TextInput
           style={styles.input}
           onChangeText={setCalorias}
           value={calorias}
-          placeholder="Cantidad de calorías"
+          placeholder="calorias en tu dieta"
           keyboardType="numeric"
         />
       </View>
-      <View style={styles.box}>
-        <Text style={styles.label}>Ingredientes</Text>
-        <Text style={styles.smallLabel}>Escriba 1 ingrediente por línea</Text>
-        <TextInput
-          style={[styles.input, styles.multilineInput]}
-          onChangeText={(text) => setIngredientes(text.split("\n"))}
-          value={ingredientes.join("\n")}
-          placeholder="Lista de ingredientes"
-          multiline
-          numberOfLines={6}
-        />
-      </View>
       <Pressable style={styles.addButton} onPress={sendFood}>
-          <Text style={styles.buttonText}>Añadir</Text>
+          <Text style={styles.buttonText}>cambiar</Text>
           </Pressable >
+
+          <View style={styles.versionContainer}>
+            <Text style={styles.versionText}>Version 1.1</Text>
+        </View>
     </View>
   );
 }
@@ -85,6 +77,7 @@ const styles = StyleSheet.create({...baseStyles,...{
     padding: 10,
     marginVertical: 10,
     marginBottom: 30,
+    marginTop: 30,
     width: '80%',
     
   },
@@ -93,10 +86,11 @@ const styles = StyleSheet.create({...baseStyles,...{
     fontFamily: 'LexendBold',
     fontSize: 22,
   },
-  smallLabel: {
+  BigLabel: {
     marginBottom: 5,
+    backgroundColor: '#fff',
     fontFamily: 'LexendLight',
-    fontSize: 14,
+    fontSize: 16,
   },
   input: {
     backgroundColor: '#FFF',
@@ -108,7 +102,36 @@ const styles = StyleSheet.create({...baseStyles,...{
     height: 100,
     textAlignVertical: 'top',
   },
+  addButton: {
+    backgroundColor: '#9EE493',
+    width: '60%',
+    paddingVertical: 20,
+    borderRadius: 5,
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#000',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  versionContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    backgroundColor: '#2f4858',
+    padding: 10,
+
+  },
+  versionText: {
+    marginTop: 20,
+    color: '#fff',
+    fontFamily: 'LexendLight',
+    fontSize: 16,
+    textAlign: 'center',
+  },
 }
 });
 
-export default InputManual;
+export default User;
+
