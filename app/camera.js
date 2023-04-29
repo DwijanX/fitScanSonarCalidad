@@ -1,7 +1,8 @@
 import { Camera, CameraType } from 'expo-camera';
 import { useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { Button, StyleSheet, Text, Image, View } from 'react-native';
+import { Pressable , StyleSheet, Text, Image, View,Button } from 'react-native';
+import baseStyles from './styles/baseStyles'
 
 export default function camera() {
   const [cameraType, setcameraType] = useState(CameraType.back);
@@ -31,7 +32,6 @@ export default function camera() {
     if (!cameraRef) return
     try{
     const photo = await cameraRef.current.takePictureAsync()
-    console.log(photo.uri);
     setImage(photo.uri)
     }
     catch(e)
@@ -44,39 +44,67 @@ export default function camera() {
     askForCameraPermissons()
   },[])
   return (
-    <View style={styles.container}>
-      {image!=null ?
-      <Image source={{uri:image}} style={styles.camera}/>
-      :
-      <Camera
-      style={styles.camera}
-      type={cameraType}
-      ref={cameraRef}
-    ></Camera>
-      }
-        
-      <View >
-        <Button title='Take Photo' onPress={takePicture}>Take Photo</Button>
+    <View style={styles.mainContainer }>
+      <View style={styles.headerContainer}>
+          <Pressable style={styles.backButton} onPress={()=>router.back()}>
+            <Text> --</Text>
+          </Pressable >
+          <Text style={[styles.Title3,styles.pageTitle]} title="test"> Photo Scan</Text>
+        </View>
+      <View style={styles.imageContainer}>
+          {image!=null ?
+          <Image source={{uri:image}} style={styles.camera}/>
+          :
+          <Camera
+          style={styles.camera}
+          type={cameraType}
+          ref={cameraRef}
+        ></Camera>
+          }
       </View>
-      <View >
-        <Button title='Take another Photo' onPress={refreshPhoto}>Take Photo</Button>
-      </View>
+      <View style={styles.buttonContainer}>
+        {image==null ?
+          <Pressable style={styles.backButton} onPress={takePicture}>
+            <Text>Take photo</Text>
+          </Pressable >
+          :
+          <View>
+            <Pressable style={styles.backButton} onPress={sendPhotoToAnalyze}>
+              <Text>Confirm</Text>
+            </Pressable >
+            <Pressable style={styles.backButton} onPress={refreshPhoto}>
+              <Text>Take anotherPhoto</Text>
+            </Pressable >
+          </View>
+          }
+      </View>  
     </View>
   );
 }
-const styles = StyleSheet.create({ 
-  container:{
-    flex:1,
-    backgroundColor:"#fff"
-  },
+const styles=StyleSheet.create({...baseStyles,...{
+  
   camera:{
-    flex:0.5,
+    flex:0.90,
     borderRadius:20,
   },
   buttonContainer:{
-    flex:0.5,
+    flex:1,
     alignContent:'center',
     alignItems:'center'
-  }
+  },
+  imageContainer:{
+    flex:3.5,
+    width:"90%",
+    height:"100%"
+  },
+  blackBox:{
+    flex:1,
+    width:"100%",
+    height:"100%",
+    backgroundColor:"black"
+  },
+  
+}
+})
 
-}); 
+//
