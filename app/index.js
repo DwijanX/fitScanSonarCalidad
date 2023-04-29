@@ -43,7 +43,7 @@ export default function App(navigation) {
             <Text style={styles.boxText}>Input Manual</Text>
         </Pressable>
       </View>
-      <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/calendarScreen")} }>
+      <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/meses_diario")} }>
             <Text style={styles.boxText}>Mi Diario</Text>
         </Pressable>
       <StatusBar style="auto" />

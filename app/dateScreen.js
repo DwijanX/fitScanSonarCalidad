@@ -1,7 +1,6 @@
 import {React,useState} from 'react';
 import { View, Text,Pressable,StyleSheet,Modal } from 'react-native';
-import baseStyles from './styles/baseStyles'
-import { Calendar } from 'react-native-calendars';
+import baseStyles from './styles/baseStyles';
 import { useSearchParams } from 'expo-router';
 
 
