@@ -7,6 +7,9 @@ export default function infoScan() {
   const router = useRouter();
   const imageUri = router.params?.imageUri;
 
+  nombre = "carne"
+  calorias = 100
+  ingredientes = ["zapallo","arroz","queso"]
 
   const sendFood = () => {
     // Implement logic for adding the data entered by the user
@@ -30,19 +33,19 @@ export default function infoScan() {
       <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
             <Text style={styles.foodText}>Nombre:</Text>
             <View style={styles.lightBlueBox}>
-                <Text style={styles.foodText}>Nombre</Text>
+                <Text style={styles.foodText}>{nombre}</Text>
             </View>
         </View>
         <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
             <Text style={styles.foodText}>Calorias:</Text>
             <View style={styles.lightBlueBox}>
-                <Text style={styles.foodText}>Calorias</Text>
+                <Text style={styles.foodText}>{calorias}</Text>
             </View>
         </View>
         <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
             <Text style={styles.foodText}>ingredientes:</Text>
             <View style={styles.ingredientesBox}>
-                <Text style={styles.foodText}>ingredientes</Text>
+                <Text style={styles.foodText}>{ingredientes.join("\n")}</Text>
             </View>
         </View>
         <Pressable style={styles.addButton} onPress={sendFood}>
@@ -51,9 +54,6 @@ export default function infoScan() {
     </View>
   );
 }
-/*
-
-      */
 
 const styles = StyleSheet.create({
   ...baseStyles,
