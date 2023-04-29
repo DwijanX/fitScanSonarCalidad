@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable , StyleSheet, Text, Image, View,Button } from 'react-native';
 import baseStyles from './styles/baseStyles'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function camera() {
   const [cameraType, setcameraType] = useState(CameraType.back);
@@ -47,7 +48,8 @@ export default function camera() {
     <View style={styles.mainContainer }>
       <View style={styles.headerContainer}>
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
-            <Text> --</Text>
+              
+              <Ionicons name="arrow-back" size={32}></Ionicons>
           </Pressable >
           <Text style={[styles.Title3,styles.pageTitle]} title="test"> Photo Scan</Text>
         </View>
@@ -64,16 +66,16 @@ export default function camera() {
       </View>
       <View style={styles.buttonContainer}>
         {image==null ?
-          <Pressable style={styles.backButton} onPress={takePicture}>
-            <Text>Take photo</Text>
+          <Pressable style={styles.cameraButton} onPress={takePicture}>
+            <Ionicons name="camera" size={50}></Ionicons>
           </Pressable >
           :
-          <View>
-            <Pressable style={styles.backButton} onPress={sendPhotoToAnalyze}>
-              <Text>Confirm</Text>
+          <View style={styles.yesNoContainer}>
+            <Pressable style={[styles.cameraButton,styles.noButton]} onPress={refreshPhoto}>
+              <Ionicons name="close-circle-outline" size={32}></Ionicons>
             </Pressable >
-            <Pressable style={styles.backButton} onPress={refreshPhoto}>
-              <Text>Take anotherPhoto</Text>
+            <Pressable style={styles.cameraButton} onPress={sendPhotoToAnalyze}>
+              <Ionicons name="checkmark-circle" size={32}></Ionicons>
             </Pressable >
           </View>
           }
@@ -89,8 +91,16 @@ const styles=StyleSheet.create({...baseStyles,...{
   },
   buttonContainer:{
     flex:1,
+    width:"100%",
     alignContent:'center',
     alignItems:'center'
+  },
+  yesNoContainer:{
+    flex:1,
+    flexDirection:'row',
+    width:"75%",
+    alignContent:"center",
+    justifyContent:"space-evenly"
   },
   imageContainer:{
     flex:3.5,
@@ -103,7 +113,17 @@ const styles=StyleSheet.create({...baseStyles,...{
     height:"100%",
     backgroundColor:"black"
   },
-  
+  cameraButton:{
+      alignItems: 'center',
+      justifyContent: 'center',
+      width:80,
+      height:80,
+      backgroundColor: '#9EE493',
+      borderRadius:100
+  },
+  noButton:{
+    backgroundColor:"#EB0202"
+  }
 }
 })
 
