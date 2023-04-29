@@ -32,7 +32,19 @@ let styles = {
   },
   pageTitle:{
     paddingLeft:"10%"
-  }
-
+  },
+  addButton: {
+    backgroundColor: '#9EE493',
+    width: '60%',
+    paddingVertical: 20,
+    borderRadius: 5,
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#000',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 }
 export default styles
