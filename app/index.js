@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons'
 SplashScreen.preventAutoHideAsync();
 
 
@@ -27,10 +28,12 @@ export default function App(navigation) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.titleContainer}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Text style={styles.title}>FitScan</Text>
-          <View style={styles.circle} />
-        </View>
+          <Pressable style={styles.circle} onPress={()=>{router.push("/user")}}>
+            <Ionicons name="person-circle-outline" size={50}></Ionicons>
+          </Pressable>
+       </View>
       </View>
       <View style={[styles.box, styles.box1]}>
         <Text style={styles.boxText}>Reporte Diario</Text>
@@ -61,27 +64,23 @@ const styles = StyleSheet.create({
   header: {
     height: 80,
     width: '100%',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   titleContainer: {
-    
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontFamily: 'LexendExtraBold',
-    fontSize: 20,
+    marginLeft: 90,
+    fontSize: 40,
     marginTop: 30,
     color: '#FFF',
   },
   circle: {
-    width: 20,
-    height: 20,
-    backgroundColor: '#FFF',
+    marginLeft: 34,
+    backgroundColor: '#86BBD8',
     borderRadius: 10,
-    marginLeft: 5,
+    marginTop: 30
   },
   box: {
     height: 220,
