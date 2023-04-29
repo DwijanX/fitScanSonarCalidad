@@ -20,7 +20,7 @@ function Reporte() {
         <View style={styles.headerContainer}>
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
               <Ionicons name="arrow-back" size={32}></Ionicons>
-          </Pressable >
+          </Pressable>
           <Text style={[styles.Title3,styles.pageTitle]} title="test">Reporte Diario</Text>
         </View>
         <View style={[styles.greenBox, styles.box]}>

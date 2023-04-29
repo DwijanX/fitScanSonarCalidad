@@ -3,15 +3,17 @@ import { View, Text,Pressable,StyleSheet,Modal } from 'react-native';
 import baseStyles from './styles/baseStyles'
 import { Calendar } from 'react-native-calendars';
 import { Redirect,useRouter  } from 'expo-router';
-import dateScreen from './dateScreen';
 import Ionicons from '@expo/vector-icons/Ionicons'
-
+import { useSearchParams } from 'expo-router';
 
 
 export default function calendarScreen() {
     const [showModal,setShowModal]=useState(false)
     const router=useRouter();
-    const {month,date} = router.params;
+
+    const {month, date}=useSearchParams()
+    console.log(month,date)
+    
     const eachDayFunction=(date)=>{
         
         router.replace(href={
@@ -25,7 +27,7 @@ export default function calendarScreen() {
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
               
               <Ionicons name="arrow-back" size={32}></Ionicons>
-          </Pressable >
+          </Pressable>
           <Text style={[styles.Title3,styles.pageTitle]} title="test">{month}</Text>
         </View>
         <View >

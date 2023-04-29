@@ -6,11 +6,13 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router';
 
 
-
 export default function meses_diario() {
   const router=useRouter();
-  const change_page=async(month,date)=>{
-    router.push({pathname: '/calendarScreen',query: { month: month, date: date}});
+  const change_page=(month,date)=>{
+    router.replace(href={
+        pathname:'/calendarScreen',
+        params:{"month":month, "date":date}
+    });
   }
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
@@ -24,11 +26,11 @@ export default function meses_diario() {
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
               
               <Ionicons name="arrow-back" size={32}></Ionicons>
-          </Pressable >
+          </Pressable>
           <Text style={[styles.Title3,styles.pageTitle]} title="test">   Mi diario</Text>
         </View>
         <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{change_page("Abril","2023-10-03")}}>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{change_page("Marzo","2023-03-10")}}>
           <Text style={styles.boxText}>Abril</Text>
         </Pressable>
         <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/calendarScreen")} }>
