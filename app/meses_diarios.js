@@ -6,7 +6,12 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router';
 
 
+
 export default function meses_diario() {
+  const router=useRouter();
+  const change_page=async(month,date)=>{
+    router.push({pathname: '/calendarScreen',query: { month: month, date: date}});
+  }
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
     'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
@@ -23,50 +28,50 @@ export default function meses_diario() {
           <Text style={[styles.Title3,styles.pageTitle]} title="test">   Mi diario</Text>
         </View>
         <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/camera")} }>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{change_page("Abril","2023-10-03")}}>
           <Text style={styles.boxText}>Abril</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/inputManual")} }>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/calendarScreen")} }>
             <Text style={styles.boxText}>Marzo</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/camera")} }>
+        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/calendarScreen")} }>
           <Text style={styles.boxText}>Febrero</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/inputManual")} }>
+        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/calendarScreen")} }>
             <Text style={styles.boxText}>Enero</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/camera")} }>
+        <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/calendarScreen")} }>
           <Text style={styles.boxText}>Diciembre</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/inputManual")} }>
+        <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/calendarScreen")} }>
             <Text style={styles.boxText}>Noviembre</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box4]} onPress={()=>{router.push("/camera")} }>
+        <Pressable style={[styles.box, styles.box4]} onPress={()=>{router.push("/calendarScreen")} }>
           <Text style={styles.boxText}>Octubre</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box4]} onPress={()=>{router.push("/inputManual")} }>
+        <Pressable style={[styles.box, styles.box4]} onPress={()=>{router.push("/calendarScreen")} }>
             <Text style={styles.boxText}>Septiembre</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/camera")} }>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/calendarScreen")} }>
           <Text style={styles.boxText}>Agosto</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/inputManual")} }>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/calendarScreen")} }>
             <Text style={styles.boxText}>Julio</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/camera")} }>
+        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/calendarScreen")} }>
           <Text style={styles.boxText}>Junio</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/inputManual")} }>
+        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/calendarScreen")} }>
             <Text style={styles.boxText}>Mayo</Text>
         </Pressable>
       </View>
@@ -111,6 +116,7 @@ const styles = StyleSheet.create({
       marginTop: 50,
     },
     box: {
+      borderRadius: 10,
       height: 100,
       width: 150,
       alignItems: 'center',

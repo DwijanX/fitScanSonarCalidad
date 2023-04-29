@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   box: {
+    borderRadius: 10,
     height: 220,
     width: 150,
     alignItems: 'center',
