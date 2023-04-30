@@ -9,19 +9,24 @@ export default function infoScan() {
   const router = useRouter();
   const [image,setImage]=useState(null)
   const {imgSource,classes}=useSearchParams()
-  nombre = "carne"
+  hora = "10:20"
   calorias = 100
-  ingredientes = ["zapallo","arroz","queso"]
+  const alimentos = [{ nombre: 'zapallo', calorias: 100 }, { nombre: 'cebolla', calorias: 200 }];
   const encodedBase64 =
     'iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
 
+    const getDate = () => {
+      const now = new Date();
+      now.setHours(now.getHours() - 4);
+      return now
+    };
+
   const sendFood = () => {
     // Implement logic for adding the data entered by the user
-    console.log("lali");
+    console.log(getDate());
   };
 
   useState(()=>{
-console.log(imgSource);
 setImage(Base64.atob(imgSource));
   },[])
 
@@ -40,7 +45,7 @@ setImage(Base64.atob(imgSource));
         {
           image?
           <View>
-            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+            <Image source={{ uri: image }} style={{ width: 200, height: 200, marginLeft: '22%'}} />
           </View>
           :
           <Text> null</Text>
@@ -48,9 +53,9 @@ setImage(Base64.atob(imgSource));
       </View>
     
       <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-            <Text style={styles.foodText}>Nombre:</Text>
+            <Text style={styles.foodText}>Hora:</Text>
             <View style={styles.lightBlueBox}>
-                <Text style={styles.foodText}>{nombre}</Text>
+                <Text style={styles.foodText}>{hora}</Text>
             </View>
         </View>
         <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
@@ -60,14 +65,18 @@ setImage(Base64.atob(imgSource));
             </View>
         </View>
         <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-            <Text style={styles.foodText}>ingredientes:</Text>
-            <View style={styles.ingredientesBox}>
-                <Text style={styles.foodText}>{ingredientes.join("\n")}</Text>
-            </View>
+            <Text style={styles.foodText}>alimentos:</Text>
+            <View style={[styles.ingredientesBox]}>
+          {alimentos.length ? (
+            <Text style={styles.foodText}>{alimentos.map((item) => `${item.nombre}: ${item.calorias}`).join('\n')}</Text>
+          ) : (
+            <Text style={styles.foodText}>no hay datos hoy</Text>
+          )}
+        </View>
         </View>
         <Pressable style={styles.addButton} onPress={sendFood}>
           <Text style={styles.buttonText}>Añadir</Text>
-          </Pressable >
+          </Pressable>
     </View>
   );
 }

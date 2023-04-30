@@ -19,7 +19,12 @@ function InputManual() {
   const [calorias, setCalorias] = useState('');
   const [ingredientes, setIngredientes] = useState([]);
 
-  
+  const getDate = () => {
+    const now = new Date();
+    now.setHours(now.getHours() - 4);
+  };
+
+
   const sendFood = () => {
     // Implement logic for adding the data entered by the user
     console.log(`Nombre: ${nombre}, Calorias: ${calorias}, Ingredientes: ${ingredientes}`);
@@ -31,7 +36,7 @@ function InputManual() {
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
               
               <Ionicons name="arrow-back" size={32}></Ionicons>
-          </Pressable >
+          </Pressable>
           <Text style={[styles.Title3,styles.pageTitle]} title="test">Input Manual</Text>
         </View>
       <View style={styles.box}>

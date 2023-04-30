@@ -8,6 +8,17 @@ import { useCallback } from 'react';
 
 function Reporte() {
   const router=useRouter()
+
+  const now = new Date();
+  now.setHours(now.getHours() - 4);
+  const fecha = now.toISOString().substring(0, 10);
+  
+  //const ingredientes = []
+
+  const ingredientes = [{ nombre: 'zapallo', calorias: 100 }, { nombre: 'cebolla', calorias: 200 }];
+  const totalCalories = ingredientes.reduce((acc, current) => acc + current.calorias, 0);
+  const caloriasUsuario = 2000;
+  const cumplisteDieta = totalCalories <= caloriasUsuario;
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
     'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
@@ -16,65 +27,50 @@ function Reporte() {
   });
 
   return (
-    <View style={styles.container}>
-        <View style={styles.headerContainer}>
+    <View style={styles.mainContainer}>
+
+      <View style={styles.headerContainer}>
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
+              
               <Ionicons name="arrow-back" size={32}></Ionicons>
           </Pressable>
-          <Text style={[styles.Title3,styles.pageTitle]} title="test">Reporte Diario</Text>
+          <Text style={[styles.Title3,styles.pageTitle]} title="test">{fecha}</Text>
         </View>
-        <View style={[styles.greenBox, styles.box]}>
-            <Text style={styles.dayText}>17/04/23</Text>
+
+      <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+        <Text style={styles.foodText}>Alimentos:</Text>
+        <View style={[styles.ingredientesBox]}>
+          {ingredientes.length ? (
+            <Text style={styles.foodText}>{ingredientes.map((item) => `${item.nombre}: ${item.calorias}`).join('\n')}</Text>
+          ) : (
+            <Text style={styles.foodText}>no hay datos hoy</Text>
+          )}
         </View>
-        <View style={[styles.lightBox, styles.box, styles.secondBox]}>
-            <Text style={styles.dayText}>10:42</Text>
+      </View>
+      <View style={[styles.lightBlueBox, styles.box, { marginTop: 10 }]}>
+        <Text style={styles.foodText}>calorias totales: {totalCalories}</Text>
+      </View>
+      {ingredientes.length ? (
+        <View style={[styles.HicisteBox, styles.box, { marginTop: 10, backgroundColor: cumplisteDieta ? '#9EE493' : 'red' }]}>
+          <Text style={styles.foodText}>{cumplisteDieta ? 'cumpliste Dieta' : 'no Cumpliste Dieta'}</Text>
         </View>
-        <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-            <Text style={styles.foodText}>Nombre:</Text>
-            <View style={styles.lightBlueBox}>
-                <Text style={styles.foodText}>Nombre</Text>
-            </View>
+        ) : (
+        <View style={[styles.HicisteBox, styles.box, { marginTop: 10, backgroundColor:"#336699" }]}>
+          <Text style={styles.foodText}>no hay datos hoy</Text>
         </View>
-        <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-            <Text style={styles.foodText}>Calorias:</Text>
-            <View style={styles.lightBlueBox}>
-                <Text style={styles.foodText}>Calorias</Text>
-            </View>
-        </View>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({...baseStyles,...{
-    container: {
-        flex: 1,
-        backgroundColor: '#2f4858',
-        alignItems: 'center',
+    header: {
+        height: 80,
+        width: '100%',
         justifyContent: 'center',
-    },
-    box: {
-        marginVertical: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '80%',
-    },
-    secondBox: {
-        width: '70%',
-    },
-    thirdBox: {
-        width: '95%',
-    },
-    greenBox: {
-        backgroundColor: '#9EE493',
-        borderRadius: 10,
-        padding: 10,
-    },
-    lightBox: {
-        backgroundColor: '#DAF7DC',
-        borderRadius: 10,
-        padding: 10,
-    },
-    blueBox: {
+        flexDirection: 'row',
+      },
+      blueBox: {
         backgroundColor: '#336699',
         borderRadius: 10,
         padding: 10,
@@ -84,19 +80,32 @@ const styles = StyleSheet.create({...baseStyles,...{
         borderRadius: 10,
         padding: 10,
         marginLeft: 10,
-        width: '70%'
+        width: '75%'
       },
-    dayText: {
-        color: '#000',
-        fontSize: 18,
-        fontFamily: 'LexendBold',
-        textAlign: 'center',
-    },
-    hourText: {
-        color: '#000',
-        fontSize: 14,
-        fontFamily: 'LexendBold',
-    },
+    greenBox: {
+        backgroundColor: '#86BBD8',
+        borderRadius: 10,
+        padding: 10,
+        marginLeft: 10,
+        width: '75%'
+      },
+    HicisteBox: {
+        borderRadius: 10,
+        padding: 10,
+        marginLeft: 10,
+        width: '60%',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      ingredientesBox: {
+        backgroundColor: '#86BBD8',
+        borderRadius: 10,
+        padding: 10,
+        marginLeft: 10,
+        width: '65%',
+        height: 200,
+        flexWrap: 'wrap', 
+      },
     foodText: {
         color: '#000',
         fontSize: 16,

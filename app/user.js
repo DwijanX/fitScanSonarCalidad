@@ -19,9 +19,9 @@ function User() {
   const [calorias, setCalorias] = useState('');
 
   
-  const sendFood = () => {
+  const sendChanges = () => {
     // Implement logic for adding the data entered by the user
-    console.log(`Nombre: ${nombre}, Calorias: ${calorias}, Ingredientes: ${ingredientes}`);
+    console.log("ligma");
   };
 
   return (
@@ -30,7 +30,7 @@ function User() {
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
               
               <Ionicons name="arrow-back" size={32}></Ionicons>
-          </Pressable >
+          </Pressable>
           <Text style={[styles.Title3,styles.pageTitle]} title="test">   Usuario</Text>
         </View>
       <View style={styles.box}>
@@ -53,7 +53,7 @@ function User() {
           keyboardType="numeric"
         />
       </View>
-      <Pressable style={styles.addButton} onPress={sendFood}>
+      <Pressable style={styles.addButton} onPress={sendChanges}>
           <Text style={styles.buttonText}>cambiar</Text>
           </Pressable >
 
