@@ -5,7 +5,7 @@ import { Pressable , StyleSheet, Text, Image, View,Button } from 'react-native';
 import baseStyles from './styles/baseStyles'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import Base64 from 'Base64';
-import sendPhotoToAnalyze from './request';
+import processPhoto from './apiMediator';
 import * as FileSystem from 'expo-file-system';
 
 export default function camera() {
@@ -40,15 +40,15 @@ export default function camera() {
     return base64String;
   }
   const sendPhotoToAnalyze =  async() => {
-    classes=[]
+    ans=await processPhoto(image)
     const imageBytes = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
     });
-    const imageURI = `data:image/jpeg;base64,${imageBytes}`;
+    const imageURI = `data:image/jpeg;base64,${ans["image"]}`;
     let encoded = Base64.btoa(imageURI);
     router.replace({
       pathname: '/infoScan',
-      params: { imgSource: encoded,"classes":classes},
+      params: { "imgSource": encoded,"classes":ans["food"]},
     });
   }
 
@@ -58,7 +58,7 @@ export default function camera() {
   const takePicture = async () => {
     if (!cameraRef) return
     try{
-    let opts={quality:0.1}
+    let opts={quality:0.35}
     const photo = await cameraRef.current.takePictureAsync(options=opts)
     setImage(photo.uri)
     }

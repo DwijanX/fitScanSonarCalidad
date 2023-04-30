@@ -1,0 +1,422 @@
+[
+  {
+    "name": "apple pie",
+    "calories": 250
+  },
+  {
+    "name": "baby back ribs",
+    "calories": 400
+  },
+  {
+    "name": "baklava",
+    "calories": 334
+  },
+  {
+    "name": "beef carpaccio",
+    "calories": 730
+  },
+  {
+    "name": "beef tartare",
+    "calories": 200
+  },
+  {
+    "name": "beet salad",
+    "calories": 60
+  },
+  {
+    "name": "beignets",
+    "calories": 385
+  },
+  {
+    "name": "bread pudding",
+    "calories": 306
+  },
+  {
+    "name": "breakfast burrito",
+    "calories": 640
+  },
+  {
+    "name": "bruschetta",
+    "calories": 265
+  },
+  {
+    "name": "caesar salad",
+    "calories": 230
+  },
+  {
+    "name": "cannoli",
+    "calories": 374
+  },
+  {
+    "name": "caprese salad",
+    "calories": 320
+  },
+  {
+    "name": "carrot cake",
+    "calories": 300
+  },
+  {
+    "name": "ceviche",
+    "calories": 233
+  },
+  {
+    "name": "cheese plate",
+    "calories": 472
+  },
+  {
+    "name": "cheesecake",
+    "calories": 500
+  },
+  {
+    "name": "chicken curry",
+    "calories": 306
+  },
+  {
+    "name": "chicken quesadilla",
+    "calories": 580
+  },
+  {
+    "name": "chicken wings",
+    "calories": 220
+  },
+  {
+    "name": "chocolate cake",
+    "calories": 712
+  },
+  {
+    "name": "chocolate mousse",
+    "calories": 300
+  },
+  {
+    "name": "churros",
+    "calories": 616
+  },
+  {
+    "name": "clam chowder",
+    "calories": 290
+  },
+  {
+    "name": "club sandwich",
+    "calories": 510
+  },
+  {
+    "name": "crab cakes",
+    "calories": 220
+  },
+  {
+    "name": "creme brulee",
+    "calories": 210
+  },
+  {
+    "name": "croque madame",
+    "calories": 350
+  },
+  {
+    "name": "cup cakes",
+    "calories": 300
+  },
+  {
+    "name": "deviled eggs",
+    "calories": 128
+  },
+  {
+    "name": "donuts",
+    "calories": 400
+  },
+  {
+    "name": "dumplings",
+    "calories": 250
+  },
+  {
+    "name": "edamame",
+    "calories": 150
+  },
+  {
+    "name": "eggplant",
+    "calories": 50
+  },
+  {
+    "name": "eggs benedict",
+    "calories": 400
+  },
+  {
+    "name": "escargots",
+    "calories": 75
+  },
+  {
+    "name": "falafel",
+    "calories": 217
+  },
+  {
+    "name": "filet mignon",
+    "calories": 247
+  },
+  {
+    "name": "fish and chips",
+    "calories": 300
+  },
+  {
+    "name": "fish",
+    "calories": 189
+  },
+  {
+    "name": "foie gras",
+    "calories": 462
+  },
+  {
+    "name": "french fries",
+    "calories": 118
+  },
+  {
+    "name": "french onion soup",
+    "calories": 210
+  },
+  {
+    "name": "french toast",
+    "calories": 150
+  },
+  {
+    "name": "fried calamari",
+    "calories": 158
+  },
+  {
+    "name": "fried rice",
+    "calories": 228
+  },
+  {
+    "name": "frozen yogurt",
+    "calories": 100
+  },
+  {
+    "name": "garlic bread",
+    "calories": 170
+  },
+  {
+    "name": "gnocchi",
+    "calories": 250
+  },
+  {
+    "name": "greek salad",
+    "calories": 125
+  },
+  {
+    "name": "grilled cheese sandwich",
+    "calories": 320
+  },
+  {
+    "name": "grilled salmon",
+    "calories": 200
+  },
+  {
+    "name": "guacamole",
+    "calories": 100
+  },
+  {
+    "name": "gyoza",
+    "calories": 309
+  },
+  {
+    "name": "hamburger",
+    "calories": 300
+  },
+  {
+    "name": "hot and sour soup",
+    "calories": 182
+  },
+  {
+    "name": "hot dog",
+    "calories": 189
+  },
+  {
+    "name": "hummus",
+    "calories": 78
+  },
+  {
+    "name": "ice cream",
+    "calories": 279
+  },
+  {
+    "name": "koshary",
+    "calories": 270
+  },
+  {
+    "name": "lasagna",
+    "calories": 275
+  },
+  {
+    "name": "lentil soup",
+    "calories": 152
+  },
+  {
+    "name": "lobster bisque",
+    "calories": 250
+  },
+  {
+    "name": "lobster roll sandwich",
+    "calories": 290
+  },
+  {
+    "name": "macaroni and cheese",
+    "calories": 370
+  },
+  {
+    "name": "macarons",
+    "calories": 344
+  },
+  {
+    "name": "miso soup",
+    "calories": 84
+  },
+  {
+    "name": "molokhia",
+    "calories": 100
+  },
+  {
+    "name": "mussels",
+    "calories": 193
+  },
+  {
+    "name": "nachos",
+    "calories": 140
+  },
+  {
+    "name": "omelette",
+    "calories": 203
+  },
+  {
+    "name": "onion rings",
+    "calories": 251
+  },
+  {
+    "name": "oysters",
+    "calories": 57
+  },
+  {
+    "name": "pancakes",
+    "calories": 230
+  },
+  {
+    "name": "panna cotta",
+    "calories": 237
+  },
+  {
+    "name": "peking duck",
+    "calories": 250
+  },
+  {
+    "name": "pizza",
+    "calories": 488
+  },
+  {
+    "name": "pork chop",
+    "calories": 118
+  },
+  {
+    "name": "poutine",
+    "calories": 140
+  },
+  {
+    "name": "prime rib",
+    "calories": 400
+  },
+  {
+    "name": "pulled pork sandwich",
+    "calories": 500
+  },
+  {
+    "name": "ravioli",
+    "calories": 102
+  },
+  {
+    "name": "red velvet cake",
+    "calories": 320
+  },
+  {
+    "name": "risotto",
+    "calories": 354
+  },
+  {
+    "name": "samosa",
+    "calories": 308
+  },
+  {
+    "name": "sashimi",
+    "calories": 200
+  },
+  {
+    "name": "scallops",
+    "calories": 110
+  },
+  {
+    "name": "seaweed salad",
+    "calories": 120
+  },
+  {
+    "name": "shrimp and grits",
+    "calories": 367
+  },
+  {
+    "name": "spaghetti bolognese",
+    "calories": 536
+  },
+  {
+    "name": "spaghetti carbonara",
+    "calories": 674
+  },
+  {
+    "name": "spring rolls",
+    "calories": 215
+  },
+  {
+    "name": "steak",
+    "calories": 190
+  },
+  {
+    "name": "strawberry shortcake",
+    "calories": 370
+  },
+  {
+    "name": "stuffed grape leaves",
+    "calories": 250
+  },
+  {
+    "name": "sushi",
+    "calories": 410
+  },
+  {
+    "name": "sweet potato",
+    "calories": 164
+  },
+  {
+    "name": "tacos",
+    "calories": 485
+  },
+  {
+    "name": "takoyaki",
+    "calories": 300
+  },
+  {
+    "name": "tiramisu",
+    "calories": 220
+  },
+  {
+    "name": "tuna tartare",
+    "calories": 148
+  },
+  {
+    "name": "waffles",
+    "calories": 277
+  },
+  {
+    "name": "huminta",
+    "calories": 223
+  },
+  {
+    "name": "saltena",
+    "calories": 233
+  },
+  {
+    "name": "anticucho",
+    "calories": 400
+  }
+]

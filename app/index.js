@@ -23,6 +23,7 @@ export default function App(navigation) {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
+  
   if (!fontsLoaded) {
     return null
   }

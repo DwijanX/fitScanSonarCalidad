@@ -1,5 +1,7 @@
 import * as FileSystem from "expo-file-system";
 import { Buffer } from 'buffer';
+import * as database from './dataBase/databaseCalls'
+api="https://8873-181-177-170-131.ngrok-free.app/identifyPhoto"
 
 function decodeImage(encodedImage) {
     const decodedImage = Buffer.from(encodedImage, 'base64');
@@ -13,12 +15,12 @@ function decodeImage(encodedImage) {
       reader.readAsDataURL(blob);
     });
   }
-async function sendPhotoToAnalyze(uri) {
+async function analizePhotoUsingApi(uri) {
     const formData = new FormData();
     formData.append('file', { uri, name: 'file.jpg', type: 'image/jpeg' });
   
     try {
-      const response = await fetch('https://0ad3-181-177-170-131.ngrok-free.app/identifyPhoto', {
+      const response = await fetch(api, {
         method: 'POST',
         body: formData,
         headers: {
@@ -36,4 +38,10 @@ async function sendPhotoToAnalyze(uri) {
     }
   }
 
-export default sendPhotoToAnalyze
+async function processPhoto(uri){
+  apiAnswer=await analizePhotoUsingApi(uri)
+  food=apiAnswer["food"]
+  foodWithCalories=await database.getCalories(food)
+  return {"image":apiAnswer["image"],"food":foodWithCalories}
+}
+export default processPhoto
