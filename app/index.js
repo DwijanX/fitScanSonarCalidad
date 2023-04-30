@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons'
+
 SplashScreen.preventAutoHideAsync();
 
 
@@ -43,13 +44,17 @@ export default function App(navigation) {
       <View style={styles.row}>
         <Pressable style={[styles.box, styles.box2a]} onPress={()=>{router.push("/camera")} }>
           <Text style={styles.boxText}>Foto Scan</Text>
+          <Ionicons name="camera-outline" size={150}></Ionicons>
         </Pressable>
         <Pressable style={[styles.box, styles.box2b]} onPress={()=>{router.push("/inputManual")} }>
             <Text style={styles.boxText}>Input Manual</Text>
+            <Ionicons name="list-circle-outline" size={140}></Ionicons>
         </Pressable>
       </View>
       <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/meses_diarios")} }>
             <Text style={styles.boxText}>Mi Diario</Text>
+            <Ionicons name="book-outline" size={100}></Ionicons>
+            
         </Pressable>
       <StatusBar style="auto" />
     </View>
@@ -101,16 +106,19 @@ const styles = StyleSheet.create({
   box2a: {
     backgroundColor: '#336699',
     marginRight: 5,
+    flexDirection: 'column',
   },
   box2b: {
     backgroundColor: '#DAF7DC',
     marginLeft: 5,
+    flexDirection: 'column',
   },
   box3: {
     width: 300,
     height: 150,
     backgroundColor: '#86BBD8',
     marginTop: 20,
+    flexDirection: 'column',
   },
   row: {
     flexDirection: 'row',

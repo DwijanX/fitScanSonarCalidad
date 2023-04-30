@@ -53,21 +53,9 @@ function InputManual() {
           keyboardType="numeric"
         />
       </View>
-      <View style={styles.box}>
-        <Text style={styles.label}>Ingredientes</Text>
-        <Text style={styles.smallLabel}>Escriba 1 ingrediente por línea</Text>
-        <TextInput
-          style={[styles.input, styles.multilineInput]}
-          onChangeText={(text) => setIngredientes(text.split("\n"))}
-          value={ingredientes.join("\n")}
-          placeholder="Lista de ingredientes"
-          multiline
-          numberOfLines={6}
-        />
-      </View>
       <Pressable style={styles.addButton} onPress={sendFood}>
           <Text style={styles.buttonText}>Añadir</Text>
-          </Pressable >
+      </Pressable>
     </View>
   );
 }
@@ -84,8 +72,9 @@ const styles = StyleSheet.create({...baseStyles,...{
     borderRadius: 10,
     padding: 10,
     marginVertical: 10,
-    marginBottom: 30,
+    marginBottom: 20,
     width: '80%',
+    height:120,
     
   },
   label: {

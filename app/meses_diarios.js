@@ -1,16 +1,23 @@
 import {React,useState} from 'react';
-import { View, Text,Pressable,StyleSheet,Modal } from 'react-native';
+import { View, Text,Pressable,StyleSheet,Modal, ScrollView } from 'react-native';
 import baseStyles from './styles/baseStyles'
 import { useFonts } from 'expo-font';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router';
 
 
-
 export default function meses_diario() {
   const router=useRouter();
-  const change_page=async(month,date)=>{
-    router.push({pathname: '/calendarScreen',query: { month: month, date: date}});
+  const change_page=(month)=>{
+
+    const year = new Date().getFullYear();
+    const firstDay = new Date(year, month - 1, 1);
+    const date = firstDay.toISOString().split("T")[0];
+    const monthString = firstDay.toLocaleString('es-ES', { month: 'long' });
+    router.replace(href={
+        pathname:'/calendarScreen',
+        params:{"month":monthString, "date":date}
+    });
   }
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
@@ -19,63 +26,63 @@ export default function meses_diario() {
     'LexendLight': require('./assets/fonts/static/Lexend-Light.ttf'),
   });
     return(
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerContainer}>
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
               
               <Ionicons name="arrow-back" size={32}></Ionicons>
-          </Pressable >
+          </Pressable>
           <Text style={[styles.Title3,styles.pageTitle]} title="test">   Mi diario</Text>
         </View>
         <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{change_page("Abril","2023-10-03")}}>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{change_page(4)}}>
           <Text style={styles.boxText}>Abril</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{change_page(3)} }>
             <Text style={styles.boxText}>Marzo</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box2]} onPress={()=>{change_page(2)} }>
           <Text style={styles.boxText}>Febrero</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box2]} onPress={()=>{change_page(1)} }>
             <Text style={styles.boxText}>Enero</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box3]} onPress={()=>{change_page(12)} }>
           <Text style={styles.boxText}>Diciembre</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box3]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box3]} onPress={()=>{change_page(11)} }>
             <Text style={styles.boxText}>Noviembre</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box4]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box4]} onPress={()=>{change_page(10)} }>
           <Text style={styles.boxText}>Octubre</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box4]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box4]} onPress={()=>{change_page(9)} }>
             <Text style={styles.boxText}>Septiembre</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{change_page(8)} }>
           <Text style={styles.boxText}>Agosto</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box1]} onPress={()=>{change_page(7)} }>
             <Text style={styles.boxText}>Julio</Text>
         </Pressable>
       </View>
       <View style={styles.row}>
-        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box2]} onPress={()=>{change_page(6)} }>
           <Text style={styles.boxText}>Junio</Text>
         </Pressable>
-        <Pressable style={[styles.box, styles.box2]} onPress={()=>{router.push("/calendarScreen")} }>
+        <Pressable style={[styles.box, styles.box2]} onPress={()=>{change_page(5)} }>
             <Text style={styles.boxText}>Mayo</Text>
         </Pressable>
       </View>
-    </View>
+    </ScrollView>
     );
 };
 const styles = StyleSheet.create({
