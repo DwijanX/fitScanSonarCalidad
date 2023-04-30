@@ -20,15 +20,15 @@ function InputManual() {
   const [calorias, setCalorias] = useState('');
   const [ingredientes, setIngredientes] = useState([]);
 
-  const getDate = () => {
-    const now = new Date();
-    now.setHours(now.getHours() - 4);
-  };
+  let now = new Date();
+  now.setHours(now.getHours() - 4);
+  let date = now.toISOString().substring(0, 10).replace(/-/g, "_");
 
 
   const sendFood = () => {
-    // Implement logic for adding the data entered by the user
-    console.log(`Nombre: ${nombre}, Calorias: ${calorias}, Ingredientes: ${ingredientes}`);
+    //console.log("juan",[nombre],[parseInt(calorias)],date)
+    database.newDishesConsumed("juan",[nombre],[parseInt(calorias)],date)
+    router.back()
   };
 
   return (

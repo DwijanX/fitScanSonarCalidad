@@ -46,9 +46,11 @@ export default function camera() {
     });
     const imageURI = `data:image/jpeg;base64,${ans["image"]}`;
     let encoded = Base64.btoa(imageURI);
+    
+    //let encodedFood = Base64.btoa(ans["food"]);
     router.replace({
       pathname: '/infoScan',
-      params: { "imgSource": encoded,"classes":ans["food"]},
+      params: { "imgSource": encoded,"classes":JSON.stringify(ans["food"])},
     });
   }
 

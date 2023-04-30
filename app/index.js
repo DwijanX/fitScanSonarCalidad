@@ -12,12 +12,18 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App(navigation) {
   const router=useRouter()
+
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
     'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
     'LexendNormal': require('./assets/fonts/static/Lexend-Medium.ttf'),
     'LexendLight': require('./assets/fonts/static/Lexend-Light.ttf'),
   });
+
+  let now = new Date();
+  now.setHours(now.getHours() - 4);
+  let date = now.toISOString().substring(0, 10);
+
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
@@ -40,6 +46,7 @@ export default function App(navigation) {
       <View style={[styles.box, styles.box1]}>
       <Pressable style={[styles.box, styles.box1]} onPress={()=>{router.push("/reporte")} }>
         <Text style={styles.boxText}>Reporte Diario</Text>
+        <Text style={styles.boxTextWide}>{date}</Text>
       </Pressable>
       </View>
       <View style={styles.row}>
@@ -104,6 +111,7 @@ const styles = StyleSheet.create({
     width: 300,
     backgroundColor: '#9EE493',
     marginVertical: 20,
+    flexDirection: 'column',
   },
   box2a: {
     backgroundColor: '#336699',
@@ -134,4 +142,11 @@ const styles = StyleSheet.create({
     color: '#000',
     fontFamily: "LexendBold",
   },
+  boxTextWide: {
+    fontSize: 50,
+    textAlign: 'center',
+    color: '#000',
+    fontFamily: "LexendBold",
+    marginBottom: 30
+  }
 });

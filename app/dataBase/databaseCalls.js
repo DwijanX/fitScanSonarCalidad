@@ -77,9 +77,16 @@ export async function getFoodOfADate(username,date)
       }
 }
 
-function fdsdf(username,ingredient,calories,date)
+export async function newDishesConsumed(username,dishes,calories,date)
 {
-
+    let collection='User/'+username+'/Days'
+    const dateRef = firestore.doc(db, collection,date);
+    objToSave={}
+    for(let i=0;i<dishes.length;i++)
+    {
+      objToSave[dishes[i]]=calories[i]
+    }
+    await firestore.updateDoc(dateRef, objToSave);
 }
 
 async function loadIngredient(ingredient,calories)

@@ -1,7 +1,7 @@
 import * as FileSystem from "expo-file-system";
 import { Buffer } from 'buffer';
 import * as database from './dataBase/databaseCalls'
-api="https://8873-181-177-170-131.ngrok-free.app/identifyPhoto"
+api="https://f6a1-181-177-170-131.ngrok-free.app/identifyPhoto"
 
 function decodeImage(encodedImage) {
     const decodedImage = Buffer.from(encodedImage, 'base64');
@@ -40,7 +40,7 @@ async function analizePhotoUsingApi(uri) {
 
 async function processPhoto(uri){
   apiAnswer=await analizePhotoUsingApi(uri)
-  food=apiAnswer["food"]
+  food=apiAnswer["objects"]
   foodWithCalories=await database.getCalories(food)
   return {"image":apiAnswer["image"],"food":foodWithCalories}
 }

@@ -4,31 +4,31 @@ import { Pressable , StyleSheet, Text, Image, View } from 'react-native';
 import baseStyles from './styles/baseStyles';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Base64 from 'Base64';
+import * as database from './dataBase/databaseCalls'
 
 export default function infoScan() {
   const router = useRouter();
   const [image,setImage]=useState(null)
   const {imgSource,classes}=useSearchParams()
-  hora = "10:20"
-  calorias = 100
-  const alimentos = [{ nombre: 'zapallo', calorias: 100 }, { nombre: 'cebolla', calorias: 200 }];
-  const encodedBase64 =
-    'iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
+  const [alimentos,setAlimentos] = useState([{ nombre: 'zapallo', calorias: 100 }, { nombre: 'cebolla', calorias: 200 }])
 
-    const getDate = () => {
-      const now = new Date();
-      now.setHours(now.getHours() - 4);
-      return now
-    };
+  const calorias = alimentos.reduce((acc, current) => acc + current.calorias, 0);
+
+  let now = new Date();
+  now.setHours(now.getHours() - 4);
+  let date = now.toISOString().substring(0, 10).replace(/-/g, "_");
 
   const sendFood = () => {
-    // Implement logic for adding the data entered by the user
-    console.log(getDate());
+    const nombres = alimentos.map(item => item.nombre);
+    const caloriasInd = alimentos.map(item => item.calorias);
+    console.log("juan",nombres,caloriasInd,date)
+    database.newDishesConsumed("juan",nombres,caloriasInd,date);
   };
 
   useState(()=>{
-setImage(Base64.atob(imgSource));
-  },[])
+  setImage(Base64.atob(imgSource));
+  setAlimentos(JSON.parse(classes))
+    },[])
 
   return (
     <View style={styles.mainContainer}>
@@ -53,9 +53,9 @@ setImage(Base64.atob(imgSource));
       </View>
     
       <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-            <Text style={styles.foodText}>Hora:</Text>
+            <Text style={styles.foodText}>Fecha:</Text>
             <View style={styles.lightBlueBox}>
-                <Text style={styles.foodText}>{hora}</Text>
+                <Text style={styles.foodText}>{date}</Text>
             </View>
         </View>
         <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
@@ -70,7 +70,7 @@ setImage(Base64.atob(imgSource));
           {alimentos.length ? (
             <Text style={styles.foodText}>{alimentos.map((item) => `${item.nombre}: ${item.calorias}`).join('\n')}</Text>
           ) : (
-            <Text style={styles.foodText}>no hay datos hoy</Text>
+            <Text style={styles.foodText}>no hay datos encontrados</Text>
           )}
         </View>
         </View>

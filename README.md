@@ -1,15 +1,10 @@
-# Expo Router Example
+# FitScan:
 
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+es una aplicacion creada para encontrar las calorias de los alimentos antes de consumirlos, en caso de que una persona no este segura de lo que esta por consumir es bueno para su salud, entonces la app le puede servir a ver cuantas calorias tiene ese alimento. Es capaz de detectar multiples comidas en una imagen y guarda un diario de todos los dias en que registraste comida para que siempre seas capaz de ver tu progreso.
+Eres capaz de aumentar o disminuir tus calorias objetivo para que la aplicacion sea customizable para cada persona.
 
-## 🚀 How to use
+npm install para instalar librerias
 
-```sh
-npx create-react-native-app -t with-router
-```
+se necesita Expo App en android para correr la aplicacion: npm start y utilizar el QR
 
-## 📝 Notes
-
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
-- [Request for Comments](https://github.com/expo/router/discussions/1)
+Todos los derechos reservados
