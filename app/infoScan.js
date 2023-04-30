@@ -1,20 +1,30 @@
-import { useRouter } from 'expo-router';
-import { Pressable , StyleSheet, Text, Image, View,Button } from 'react-native';
+import {React, useEffect, useState} from 'react';
+import { useRouter,useSearchParams } from 'expo-router';
+import { Pressable , StyleSheet, Text, Image, View } from 'react-native';
 import baseStyles from './styles/baseStyles';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Base64 from 'Base64';
 
 export default function infoScan() {
   const router = useRouter();
-  const imageUri = router.params?.imageUri;
-
+  const [image,setImage]=useState(null)
+  const {imgSource,classes}=useSearchParams()
   nombre = "carne"
   calorias = 100
   ingredientes = ["zapallo","arroz","queso"]
+  const encodedBase64 =
+    'iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
 
   const sendFood = () => {
     // Implement logic for adding the data entered by the user
     console.log("lali");
   };
+
+  useState(()=>{
+console.log(imgSource);
+setImage(Base64.atob(imgSource));
+  },[])
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.headerContainer}>
@@ -27,9 +37,16 @@ export default function infoScan() {
       </View>
 
       <View style={styles.imageContainer}>
-        <Image source={{ uri: imageUri }} style={styles.image} />
+        {
+          image?
+          <View>
+            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+          </View>
+          :
+          <Text> null</Text>
+        }
       </View>
-
+    
       <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
             <Text style={styles.foodText}>Nombre:</Text>
             <View style={styles.lightBlueBox}>
@@ -55,14 +72,17 @@ export default function infoScan() {
   );
 }
 
-const styles = StyleSheet.create({
-  ...baseStyles,
+const styles=StyleSheet.create({...baseStyles,...{
   imageContainer: {
     flex: 1,
     elevation: 1,
+    width:"100%",
+    height:"100%"
   },
   image: {
-    resizeMode: 'contain',
+    flex:1,
+    width:"100%",
+    height:"100%"
   },
   box: {
     marginVertical: 10,
@@ -97,4 +117,4 @@ foodText: {
     fontFamily: 'LexendBold',
 },
 
-});
+}});

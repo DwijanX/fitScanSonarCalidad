@@ -14,10 +14,7 @@ function decodeImage(encodedImage) {
     });
   }
 async function sendPhotoToAnalyze(uri) {
-    // Create a new FormData object
     const formData = new FormData();
-    let ansObj
-    // Append the file to the form data
     formData.append('file', { uri, name: 'file.jpg', type: 'image/jpeg' });
   
     try {

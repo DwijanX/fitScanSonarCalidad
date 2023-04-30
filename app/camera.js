@@ -4,7 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable , StyleSheet, Text, Image, View,Button } from 'react-native';
 import baseStyles from './styles/baseStyles'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import Base64 from 'Base64';
 import sendPhotoToAnalyze from './request';
+import * as FileSystem from 'expo-file-system';
+
 export default function camera() {
   const [cameraType, setcameraType] = useState(CameraType.back);
   const [cameraPermission, setCameraPermission] = Camera.useCameraPermissions();
@@ -24,9 +27,29 @@ export default function camera() {
       }
     }); 
   }
-  const sendPhotoToAnalyze1 = async () => {
-    answer=await sendPhotoToAnalyze(image)
-    setImage(answer["srcimg"])
+  async function uriToBase64(uri) {
+    let base64String = null;
+    try {
+      const fileContent = await FileSystem.readAsStringAsync(uri, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      base64String = Base64.encode(fileContent);
+    } catch (error) {
+      console.error(error);
+    }
+    return base64String;
+  }
+  const sendPhotoToAnalyze =  async() => {
+    classes=[]
+    const imageBytes = await FileSystem.readAsStringAsync(image, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+    const imageURI = `data:image/jpeg;base64,${imageBytes}`;
+    let encoded = Base64.btoa(imageURI);
+    router.replace({
+      pathname: '/infoScan',
+      params: { imgSource: encoded,"classes":classes},
+    });
   }
 
   const refreshPhoto = async () => {
@@ -35,8 +58,8 @@ export default function camera() {
   const takePicture = async () => {
     if (!cameraRef) return
     try{
-    const photo = await cameraRef.current.takePictureAsync()
-    console.log(photo);
+    let opts={quality:0.1}
+    const photo = await cameraRef.current.takePictureAsync(options=opts)
     setImage(photo.uri)
     }
     catch(e)
@@ -58,7 +81,7 @@ export default function camera() {
           <Text style={[styles.Title3,styles.pageTitle]} title="test"> Photo Scan</Text>
         </View>
       <View style={styles.imageContainer}>
-          {image!=null ?
+       {image!=null ?
           <Image source={{uri:image}} style={styles.camera}/>
           :
           <Camera
@@ -78,7 +101,7 @@ export default function camera() {
             <Pressable style={[styles.cameraButton,styles.noButton]} onPress={refreshPhoto}>
               <Ionicons name="close-circle-outline" size={32}></Ionicons>
             </Pressable >
-            <Pressable style={styles.cameraButton} onPress={sendPhotoToAnalyze1}>
+            <Pressable style={styles.cameraButton} onPress={sendPhotoToAnalyze}>
               <Ionicons name="checkmark-circle" size={32}></Ionicons>
             </Pressable >
           </View>
@@ -132,4 +155,4 @@ const styles=StyleSheet.create({...baseStyles,...{
 }
 })
 
-//
+/** */
