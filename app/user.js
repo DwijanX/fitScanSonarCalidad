@@ -5,24 +5,18 @@ import baseStyles from './styles/baseStyles'
 import { useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
+import * as database from './dataBase/databaseCalls'
 
 function User() {
   const router=useRouter()
-  const [fontsLoaded] = useFonts({
-    'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
-    'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
-    'LexendNormal': require('./assets/fonts/static/Lexend-Medium.ttf'),
-    'LexendLight': require('./assets/fonts/static/Lexend-Light.ttf'),
-  });
-
   const [nombre, setNombre] = useState('');
   const [calorias, setCalorias] = useState('');
 
   
-  const sendChanges = () => {
-    // Implement logic for adding the data entered by the user
-    console.log("ligma");
-  };
+  const sendChanges = async()=>{
+    await database.saveCaloriesForUser(nombre,calorias)
+    router.back()
+};
 
   return (
     <View style={styles.container}>

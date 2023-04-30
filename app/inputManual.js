@@ -5,6 +5,7 @@ import baseStyles from './styles/baseStyles'
 import { useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
+import * as database from './dataBase/databaseCalls'
 
 function InputManual() {
   const router=useRouter()

@@ -1,24 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Pressable , StyleSheet, Text, Image, View,Button, TextInput, TouchableOpacity } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import baseStyles from './styles/baseStyles'
 import { useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
+import * as database from './dataBase/databaseCalls'
+
 
 function Reporte() {
+
   const router=useRouter()
+  const [alimentos,setAlimentos] = useState([{ nombre: 'zapallo', calorias: 100 }, { nombre: 'cebolla', calorias: 200 }])
+  const [totalCalories, setCalories] = useState(0)
+  const [caloriasUsuario, setCaloriesUser] = useState(0)
+  const [cumplisteDieta, setDietaMeta] = useState(0)
+    let now = new Date();
+    now.setHours(now.getHours() - 4);
+    let fecha = now.toISOString().substring(0, 10);
 
-  const now = new Date();
-  now.setHours(now.getHours() - 4);
-  const fecha = now.toISOString().substring(0, 10);
+  useEffect(()=>{
+    let now = new Date();
+    now.setHours(now.getHours() - 4);
+    let fecha = now.toISOString().substring(0, 10).replace(/-/g, "_");
+    const getFood = async()=>{
+        let alimentosDatabase = await database.getFoodOfADate("juan",fecha)
+        let userCalories = await database.getUserCalories("juan")
+        userCalories = parseInt(parseInt(userCalories["juan"]))
+        let totalCalories = 0
+        let alimentosKeys = Object.keys(alimentosDatabase)
+        for (let i=0; i<alimentosKeys.length; i++)
+        {
+            totalCalories += alimentosDatabase[alimentosKeys[i]]
+        }
+
+        console.log(totalCalories)
+        console.log(userCalories)
+        console.log(userCalories-totalCalories)
+
+        setAlimentos(alimentosDatabase)
+        setCalories(totalCalories)
+        setCaloriesUser(userCalories)
+        setDietaMeta(userCalories-totalCalories)
+    }
+    getFood()
+    },[])
   
-  //const ingredientes = []
-
-  const ingredientes = [{ nombre: 'zapallo', calorias: 100 }, { nombre: 'cebolla', calorias: 200 }];
-  const totalCalories = ingredientes.reduce((acc, current) => acc + current.calorias, 0);
-  const caloriasUsuario = 2000;
-  const cumplisteDieta = totalCalories <= caloriasUsuario;
   const [fontsLoaded] = useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
     'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
@@ -40,19 +67,23 @@ function Reporte() {
       <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
         <Text style={styles.foodText}>Alimentos:</Text>
         <View style={[styles.ingredientesBox]}>
-          {ingredientes.length ? (
-            <Text style={styles.foodText}>{ingredientes.map((item) => `${item.nombre}: ${item.calorias}`).join('\n')}</Text>
-          ) : (
-            <Text style={styles.foodText}>no hay datos hoy</Text>
-          )}
+            {Object.entries(alimentos).length ? (
+                <Text style={styles.foodText}>
+                {Object.entries(alimentos)
+                    .map(([nombre, calorias]) => `${nombre}: ${calorias}`)
+                    .join('\n')}
+                </Text>
+            ) : (
+                <Text style={styles.foodText}>no hay datos hoy</Text>
+            )}
         </View>
       </View>
       <View style={[styles.lightBlueBox, styles.box, { marginTop: 10 }]}>
         <Text style={styles.foodText}>calorias totales: {totalCalories}</Text>
       </View>
-      {ingredientes.length ? (
-        <View style={[styles.HicisteBox, styles.box, { marginTop: 10, backgroundColor: cumplisteDieta ? '#9EE493' : 'red' }]}>
-          <Text style={styles.foodText}>{cumplisteDieta ? 'cumpliste Dieta' : 'no Cumpliste Dieta'}</Text>
+      {totalCalories != 0? (
+        <View style={[styles.HicisteBox, styles.box, { marginTop: 10, backgroundColor: cumplisteDieta>0 ? '#9EE493' : 'red' }]}>
+          <Text style={styles.foodText}>{cumplisteDieta>0 ?  'cumpliste Dieta' : 'no Cumpliste Dieta'}</Text>
         </View>
         ) : (
         <View style={[styles.HicisteBox, styles.box, { marginTop: 10, backgroundColor:"#336699" }]}>

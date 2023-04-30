@@ -2,14 +2,40 @@ import  {db} from "./database"
 import * as firestore from "firebase/firestore"; 
 import data from './csvjson.json';
 
-
+let userMaxCalories = {}
 
 export async function saveCaloriesForUser(username,calories)
 {
     const userRef = firestore.doc(db, "User",username);
+    if (Object.keys(userMaxCalories).includes(username))
+      {
+        userMaxCalories[username] = calories;
+      }
     await firestore.updateDoc(userRef, {
         dailyCalories: calories
       });
+}
+
+export async function getUserCalories(username)
+{
+
+    const userRef = firestore.doc(db, "User",username);
+    if (Object.keys(userMaxCalories).includes(username))
+      {
+        return userMaxCalories
+      }
+    const docSnap = await firestore.getDoc(userRef);
+    console.log(docSnap)
+    if (docSnap.exists()) {
+      if (Object.keys(userMaxCalories).includes(username)=== false)
+      {
+        userMaxCalories[username] = docSnap.data()["dailyCalories"];
+      }
+        return userMaxCalories[username];
+      } else {
+        return []
+      }
+
 }
 
 export async function getCalories(ingredients)
@@ -43,12 +69,14 @@ export async function getFoodOfADate(username,date)
     let collection='User/'+username+'/Days'
     const dateRef = firestore.doc(db, collection,date);
     const docSnap = await firestore.getDoc(dateRef);
+    console.log(docSnap)
     if (docSnap.exists()) {
         return docSnap.data();
       } else {
-        console.log("No such document!");
+        return []
       }
 }
+
 function fdsdf(username,ingredient,calories,date)
 {
 
