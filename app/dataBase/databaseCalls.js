@@ -22,7 +22,7 @@ export async function getUserCalories(username)
     const userRef = firestore.doc(db, "User",username);
     if (Object.keys(userMaxCalories).includes(username))
       {
-        return userMaxCalories
+        return userMaxCalories[username]
       }
     const docSnap = await firestore.getDoc(userRef);
     console.log(docSnap)
@@ -82,11 +82,12 @@ export async function newDishesConsumed(username,dishes,calories,date)
     let collection='User/'+username+'/Days'
     const dateRef = firestore.doc(db, collection,date);
     objToSave={}
+
     for(let i=0;i<dishes.length;i++)
     {
       objToSave[dishes[i]]=calories[i]
     }
-    await firestore.updateDoc(dateRef, objToSave);
+    await firestore.setDoc(dateRef, objToSave, {merge:true});
 }
 
 async function loadIngredient(ingredient,calories)

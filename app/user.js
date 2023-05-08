@@ -14,7 +14,8 @@ function User() {
 
   
   const sendChanges = async()=>{
-    await database.saveCaloriesForUser(nombre,calorias)
+    let caloriasNum = parseInt(calorias)
+    await database.saveCaloriesForUser(nombre,caloriasNum)
     router.back()
 };
 

@@ -26,7 +26,7 @@ function Reporte() {
     const getFood = async()=>{
         let alimentosDatabase = await database.getFoodOfADate("juan",fecha)
         let userCalories = await database.getUserCalories("juan")
-        userCalories = parseInt(parseInt(userCalories["juan"]))
+        console.log(userCalories)
         let totalCalories = 0
         let alimentosKeys = Object.keys(alimentosDatabase)
         for (let i=0; i<alimentosKeys.length; i++)

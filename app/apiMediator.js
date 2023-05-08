@@ -1,7 +1,7 @@
 import * as FileSystem from "expo-file-system";
 import { Buffer } from 'buffer';
 import * as database from './dataBase/databaseCalls'
-api="https://f6a1-181-177-170-131.ngrok-free.app/identifyPhoto"
+api="https://053e-181-177-170-131.ngrok-free.app/identifyPhoto"
 
 function decodeImage(encodedImage) {
     const decodedImage = Buffer.from(encodedImage, 'base64');

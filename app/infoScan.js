@@ -23,6 +23,7 @@ export default function infoScan() {
     const caloriasInd = alimentos.map(item => item.calorias);
     console.log("juan",nombres,caloriasInd,date)
     database.newDishesConsumed("juan",nombres,caloriasInd,date);
+    router.back()
   };
 
   useState(()=>{
