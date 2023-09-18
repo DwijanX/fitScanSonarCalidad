@@ -8,7 +8,7 @@ import Base64 from "Base64";
 import processPhoto from "./apiMediator";
 import * as FileSystem from "expo-file-system";
 
-export default function Camera() {
+export default function camera() {
   const [cameraType, setcameraType] = useState(CameraType.back);
   const [cameraPermission, setCameraPermission] = Camera.useCameraPermissions();
   const [image, setImage] = useState(null);
@@ -39,14 +39,12 @@ export default function Camera() {
     return base64String;
   }
   const sendPhotoToAnalyze = async () => {
-    ans = await processPhoto(image);
+    let ans = await processPhoto(image);
     const imageBytes = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
     });
     const imageURI = `data:image/jpeg;base64,${ans["image"]}`;
     let encoded = Base64.btoa(imageURI);
-
-    //let encodedFood = Base64.btoa(ans["food"]);
     router.replace({
       pathname: "/infoScan",
       params: { imgSource: encoded, classes: JSON.stringify(ans["food"]) },
