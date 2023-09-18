@@ -1,5 +1,4 @@
 import { Stack } from "expo-router";
-import baseStyles from './styles/baseStyles'
 
 
 export default layout=>{
