@@ -9,6 +9,6 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-.scannerwork/report-task.txt
+.scannerwork/
 # macOS
 .DS_Store
