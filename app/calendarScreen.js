@@ -7,7 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { useSearchParams } from 'expo-router';
 
 
-export default function calendarScreen() {
+export default function CalendarScreen() {
     const [showModal,setShowModal]=useState(false)
     const router=useRouter();
 
