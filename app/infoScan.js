@@ -6,7 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Base64 from 'Base64';
 import * as database from './dataBase/databaseCalls'
 
-export default function infoScan() {
+export default function InfoScan() {
   const router = useRouter();
   const [image,setImage]=useState(null)
   const {imgSource,classes}=useSearchParams()

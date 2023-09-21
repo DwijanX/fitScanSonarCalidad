@@ -6,7 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import * as database from './dataBase/databaseCalls'
 
 
-export default function dateScreen() {
+export default function DateScreen() {
   
   const router = useRouter();
   const [alimentos,setAlimentos] = useState([{ nombre: 'zapallo', calorias: 100 }, { nombre: 'cebolla', calorias: 200 }])

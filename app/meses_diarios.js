@@ -5,7 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router';
 
 
-export default function meses_diario() {
+export default function MesesDiario() {
   const router=useRouter();
   const change_page=(month)=>{
 
