@@ -25,9 +25,9 @@ export default function DateScreen() {
         userCalories = parseInt(parseInt(userCalories["juan"]))
         let totalCalories = 0
         let alimentosKeys = Object.keys(alimentosDatabase)
-        for (let i=0; i<alimentosKeys.length; i++)
-        {
-            totalCalories += alimentosDatabase[alimentosKeys[i]]
+        for (const alimentosKey of alimentosKeys) {
+          totalCalories += alimentosDatabase[alimentosKey]
+          
         }
 
         console.log(totalCalories)

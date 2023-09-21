@@ -45,13 +45,13 @@ export async function getCalories(ingredients)
     }
     let uniqueIngredients=Object.keys(counts)
     let answerList=[]
-    for (let i=0;i<uniqueIngredients.length;i++) {
-        const docRef = firestore.doc(db, "Food", uniqueIngredients[i]);
+    for (const uniqueIngredient of uniqueIngredients) {
+      const docRef = firestore.doc(db, "Food", uniqueIngredient);
         const docSnap = await firestore.getDoc(docRef);
         
         if (docSnap.exists()) {
             let foodData={ nombre: docSnap.data()["nombre"], calorias: docSnap.data()["calories"] }
-            for(let times=0;times<counts[uniqueIngredients[i]];times++)
+            for(let times=0;times<counts[uniqueIngredient];times++)
             {
                 answerList.push(foodData)
             }
