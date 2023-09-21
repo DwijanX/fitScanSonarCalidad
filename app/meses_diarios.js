@@ -14,12 +14,14 @@ export default function meses_diario() {
     const firstDay = new Date(year, month - 1, 1);
     const date = firstDay.toISOString().split("T")[0];
     const monthString = firstDay.toLocaleString('es-ES', { month: 'long' });
-    router.replace(href={
-        pathname:'/calendarScreen',
-        params:{"month":monthString, "date":date}
-    });
+    const href = {
+      pathname: '/calendarScreen',
+      params: {"month": monthString, "date": date}
+    };
+    
+    router.replace(href);
   }
-  const [fontsLoaded] = useFonts({
+  useFonts({
     'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
     'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
     'LexendNormal': require('./assets/fonts/static/Lexend-Medium.ttf'),

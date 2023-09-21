@@ -24,7 +24,7 @@ export default function App(navigation) {
   now.setHours(now.getHours() - 4);
   let date = now.toISOString().substring(0, 10);
 
-  const onLayoutRootView = useCallback(async () => {
+  useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
     }

@@ -12,7 +12,6 @@ export default function dateScreen() {
   const router = useRouter();
   const [alimentos,setAlimentos] = useState([{ nombre: 'zapallo', calorias: 100 }, { nombre: 'cebolla', calorias: 200 }])
   const [totalCalories, setCalories] = useState(0)
-  const [caloriasUsuario, setCaloriesUser] = useState(0)
   const [cumplisteDieta, setDietaMeta] = useState(0)
 
   const { date } = useSearchParams();
@@ -38,7 +37,6 @@ export default function dateScreen() {
 
         setAlimentos(alimentosDatabase)
         setCalories(totalCalories)
-        setCaloriesUser(userCalories)
         setDietaMeta(userCalories-totalCalories)
     }
     getFood()
