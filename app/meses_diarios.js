@@ -21,12 +21,7 @@ export default function meses_diario() {
     
     router.replace(href);
   }
-  useFonts({
-    'LexendExtraBold': require('./assets/fonts/static/Lexend-ExtraBold.ttf'),
-    'LexendBold': require('./assets/fonts/static/Lexend-Bold.ttf'),
-    'LexendNormal': require('./assets/fonts/static/Lexend-Medium.ttf'),
-    'LexendLight': require('./assets/fonts/static/Lexend-Light.ttf'),
-  });
+
     return(
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerContainer}>

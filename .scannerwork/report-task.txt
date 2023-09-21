@@ -2,5 +2,5 @@ projectKey=FitScanCalidad
 serverUrl=http://localhost:9000
 serverVersion=10.2.0.77647
 dashboardUrl=http://localhost:9000/dashboard?id=FitScanCalidad
-ceTaskId=AYq1_nNdOAkHgY2cW62P
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYq1_nNdOAkHgY2cW62P
+ceTaskId=AYq2Csz7OAkHgY2cW62S
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYq2Csz7OAkHgY2cW62S
