@@ -1,7 +1,7 @@
 import * as FileSystem from "expo-file-system";
 import { Buffer } from 'buffer';
 import * as database from './dataBase/databaseCalls'
-api="https://053e-181-177-170-131.ngrok-free.app/identifyPhoto"
+let api="https://053e-181-177-170-131.ngrok-free.app/identifyPhoto"
 
 function decodeImage(encodedImage) {
     const decodedImage = Buffer.from(encodedImage, 'base64');
@@ -29,7 +29,7 @@ async function analizePhotoUsingApi(uri) {
       });
   
       const data = await response.json();
-      obj=JSON.parse(data)
+      let obj=JSON.parse(data)
       let imageSource = `data:image/jpeg;base64,${obj["image"]}`;
       obj["srcimg"]=imageSource
       return obj
@@ -39,9 +39,9 @@ async function analizePhotoUsingApi(uri) {
   }
 
 async function processPhoto(uri){
-  apiAnswer=await analizePhotoUsingApi(uri)
-  food=apiAnswer["objects"]
-  foodWithCalories=await database.getCalories(food)
+  let apiAnswer=await analizePhotoUsingApi(uri)
+  let food=apiAnswer["objects"]
+  let foodWithCalories=await database.getCalories(food)
   return {"image":apiAnswer["image"],"food":foodWithCalories}
 }
 export default processPhoto

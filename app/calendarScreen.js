@@ -8,7 +8,7 @@ import { useSearchParams } from 'expo-router';
 
 
 export default function CalendarScreen() {
-    const [showModal,setShowModal]=useState(false)
+
     const router=useRouter();
 
     const {month, date}=useSearchParams()
@@ -16,10 +16,12 @@ export default function CalendarScreen() {
     
     const eachDayFunction=(date)=>{
         
-        router.replace(href={
-            pathname:'/dateScreen',
-            params:{"date":date.dateString}
-        });
+      const href = {
+        pathname: '/dateScreen',
+        params: { "date": date.dateString }
+      };
+      
+      router.replace(href);
     }
     return (
     <View style={styles.container }>

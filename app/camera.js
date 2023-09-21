@@ -26,21 +26,10 @@ export default function camera() {
       }
     });
   };
-  async function uriToBase64(uri) {
-    let base64String = null;
-    try {
-      const fileContent = await FileSystem.readAsStringAsync(uri, {
-        encoding: FileSystem.EncodingType.Base64,
-      });
-      base64String = Base64.encode(fileContent);
-    } catch (error) {
-      console.error(error);
-    }
-    return base64String;
-  }
+
   const sendPhotoToAnalyze = async () => {
     let ans = await processPhoto(image);
-    const imageBytes = await FileSystem.readAsStringAsync(image, {
+    await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
     });
     const imageURI = `data:image/jpeg;base64,${ans["image"]}`;
@@ -58,7 +47,7 @@ export default function camera() {
     if (!cameraRef) return;
     try {
       let opts = { quality: 0.35 };
-      const photo = await cameraRef.current.takePictureAsync((options = opts));
+      const photo = await cameraRef.current.takePictureAsync(opts);
       setImage(photo.uri);
     } catch (e) {
       console.log(e);
