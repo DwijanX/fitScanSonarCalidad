@@ -1,7 +1,7 @@
 import { Camera, CameraType } from "expo-camera";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, Image, View, Button } from "react-native";
+import { Pressable, StyleSheet, Text, Image, View } from "react-native";
 import baseStyles from "./styles/baseStyles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Base64 from "Base64";

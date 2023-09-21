@@ -1,10 +1,9 @@
-import {React,useState} from 'react';
-import { View, Text,Pressable,StyleSheet,Modal } from 'react-native';
+import {React} from 'react';
+import { View, Text,Pressable,StyleSheet } from 'react-native';
 import baseStyles from './styles/baseStyles'
 import { Calendar } from 'react-native-calendars';
-import { Redirect,useRouter  } from 'expo-router';
+import { useRouter,useSearchParams  } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { useSearchParams } from 'expo-router';
 
 
 export default function CalendarScreen() {

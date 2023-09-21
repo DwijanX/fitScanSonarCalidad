@@ -1,7 +1,6 @@
-import {React,useState} from 'react';
-import { View, Text,Pressable,StyleSheet,Modal, ScrollView } from 'react-native';
+import {React} from 'react';
+import { View, Text,Pressable,StyleSheet, ScrollView } from 'react-native';
 import baseStyles from './styles/baseStyles'
-import { useFonts } from 'expo-font';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router';
 

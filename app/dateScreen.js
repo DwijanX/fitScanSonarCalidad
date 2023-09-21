@@ -1,9 +1,8 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text,Pressable,StyleSheet,Modal } from 'react-native';
+import { View, Text,Pressable,StyleSheet } from 'react-native';
 import baseStyles from './styles/baseStyles';
-import { useSearchParams } from 'expo-router';
+import { useSearchParams,useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { useRouter } from 'expo-router';
 import * as database from './dataBase/databaseCalls'
 
 

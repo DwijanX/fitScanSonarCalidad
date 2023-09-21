@@ -1,10 +1,9 @@
 import React, { useState,useEffect } from 'react';
-import { Pressable , StyleSheet, Text, Image, View,Button, TextInput, TouchableOpacity } from 'react-native';
+import { Pressable , StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import baseStyles from './styles/baseStyles'
 import { useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
-import { useCallback } from 'react';
 import * as database from './dataBase/databaseCalls'
 
 

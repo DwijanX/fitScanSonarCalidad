@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, Text, View,Pressable } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons'
 

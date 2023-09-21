@@ -1,4 +1,3 @@
-import * as FileSystem from "expo-file-system";
 import { Buffer } from 'buffer';
 import * as database from './dataBase/databaseCalls'
 let api="https://053e-181-177-170-131.ngrok-free.app/identifyPhoto"

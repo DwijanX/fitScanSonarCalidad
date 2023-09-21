@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react';
+import {React, useState} from 'react';
 import { useRouter,useSearchParams } from 'expo-router';
 import { Pressable , StyleSheet, Text, Image, View } from 'react-native';
 import baseStyles from './styles/baseStyles';

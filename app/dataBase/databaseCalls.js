@@ -1,6 +1,5 @@
 import  {db} from "./database"
 import * as firestore from "firebase/firestore"; 
-import data from './csvjson.json';
 
 let userMaxCalories = {}
 
