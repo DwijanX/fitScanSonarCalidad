@@ -81,7 +81,7 @@ export async function newDishesConsumed(username,dishes,calories,date)
 {
     let collection='User/'+username+'/Days'
     const dateRef = firestore.doc(db, collection,date);
-    objToSave={}
+    let objToSave={}
 
     for(let i=0;i<dishes.length;i++)
     {
