@@ -8,9 +8,9 @@ import Base64 from "Base64";
 import processPhoto from "./apiMediator";
 import * as FileSystem from "expo-file-system";
 
-export default function Camera() {
-  const [cameraType, setcameraType] = useState(CameraType.back);
-  const [cameraPermission, setCameraPermission] = Camera.useCameraPermissions();
+export default function FScamera() {
+  const [cameraType] = useState(CameraType.back);
+  const [, setCameraPermission] = Camera.useCameraPermissions();
   const [image, setImage] = useState(null);
 
   const cameraRef = useRef(null);
