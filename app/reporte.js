@@ -5,6 +5,7 @@ import baseStyles from "./styles/baseStyles";
 import { useRouter } from "expo-router";
 import { useFonts } from "expo-font";
 import * as database from "./dataBase/databaseCalls";
+import FoodInDay from "./components/FoodInDay";
 
 function Reporte() {
   const router = useRouter();
@@ -62,31 +63,7 @@ function Reporte() {
           {fecha}
         </Text>
       </View>
-
-      <View
-        style={[
-          styles.blueBox,
-          styles.box,
-          styles.thirdBox,
-          { flexDirection: "row", justifyContent: "space-between" },
-        ]}
-      >
-        <Text style={styles.foodText}>Alimentos:</Text>
-        <View style={[styles.ingredientesBox]}>
-          {Object.entries(alimentos).length ? (
-            <Text style={styles.foodText}>
-              {Object.entries(alimentos)
-                .map(([nombre, calorias]) => `${nombre}: ${calorias}`)
-                .join("\n")}
-            </Text>
-          ) : (
-            <Text style={styles.foodText}>no hay datos hoy</Text>
-          )}
-        </View>
-      </View>
-      <View style={[styles.lightBlueBox, styles.box, { marginTop: 10 }]}>
-        <Text style={styles.foodText}>calorias totales: {totalCalories}</Text>
-      </View>
+      <FoodInDay alimentos={alimentos} totalCalories={totalCalories}></FoodInDay>
       {totalCalories != 0 ? (
         <View
           style={[

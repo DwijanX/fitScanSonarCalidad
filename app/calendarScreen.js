@@ -55,68 +55,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       flexWrap: 'wrap',
     },
-    header: {
-      height: 80,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    titleContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    title: {
-      fontFamily: 'LexendExtraBold',
-      fontSize: 20,
-      marginTop: 30,
-      color: '#FFF',
-    },
-    circle: {
-      width: 20,
-      height: 20,
-      backgroundColor: '#FFF',
-      borderRadius: 10,
-      marginLeft: 5,
-    },
-    row: {
-      flexDirection: 'row',
-      marginTop: 50,
-    },
-    box: {
-      borderRadius: 10,
-      height: 100,
-      width: 150,
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      flexDirection: 'column-reverse',
-    },
-    boxText: {
-      fontSize: 24,
-      textAlign: 'center',
-      color: '#000',
-      fontFamily: "LexendBold",
-    },
-    box1: {
-      backgroundColor: '#DAF7DC',
-      marginLeft: 5,
-        marginRight: 5,
-    },
-    box2: {
-      backgroundColor: '#86BBD8',
-      marginLeft: 5,
-        marginRight: 5,
-    },
-    box3: {
-        backgroundColor: '#9EE493',
-        marginLeft: 5,
-        marginRight: 5,
-      },
-    box4: {
-        backgroundColor: '#336699',
-        marginLeft: 5,
-        marginRight: 5,
-      },
+    
   });
   
   //

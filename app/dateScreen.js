@@ -4,6 +4,7 @@ import baseStyles from './styles/baseStyles';
 import { useSearchParams,useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import * as database from './dataBase/databaseCalls'
+import FoodInDay from './components/FoodInDay';
 
 
 export default function DateScreen() {
@@ -51,24 +52,8 @@ export default function DateScreen() {
           </Pressable>
           <Text style={[styles.Title3,styles.pageTitle]} title="test">{fecha}</Text>
         </View>
-
-      <View style={[styles.blueBox, styles.box, styles.thirdBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-        <Text style={styles.foodText}>Alimentos:</Text>
-        <View style={[styles.ingredientesBox]}>
-            {Object.entries(alimentos).length ? (
-                <Text style={styles.foodText}>
-                {Object.entries(alimentos)
-                    .map(([nombre, calorias]) => `${nombre}: ${calorias}`)
-                    .join('\n')}
-                </Text>
-            ) : (
-                <Text style={styles.foodText}>no hay datos hoy</Text>
-            )}
-        </View>
-      </View>
-      <View style={[styles.lightBlueBox, styles.box, { marginTop: 10 }]}>
-        <Text style={styles.foodText}>calorias totales: {totalCalories}</Text>
-      </View>
+      <FoodInDay alimentos={alimentos} totalCalories={totalCalories}></FoodInDay>
+      
       {totalCalories != 0? (
         <View style={[styles.HicisteBox, styles.box, { marginTop: 10, backgroundColor: cumplisteDieta>0 ? '#9EE493' : 'red' }]}>
           <Text style={styles.foodText}>{cumplisteDieta>0 ? 'cumpliste Dieta' : 'no Cumpliste Dieta'}</Text>
@@ -84,12 +69,6 @@ export default function DateScreen() {
 
 
 const styles=StyleSheet.create({...baseStyles,...{
-  header: {
-    height: 80,
-    width: '100%',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
   blueBox: {
     backgroundColor: '#336699',
     borderRadius: 10,
@@ -128,4 +107,3 @@ foodText: {
   }
   })
   
-  //

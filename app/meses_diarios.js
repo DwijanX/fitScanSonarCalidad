@@ -90,30 +90,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       flexWrap: 'wrap',
     },
-    header: {
-      height: 80,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    titleContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    title: {
-      fontFamily: 'LexendExtraBold',
-      fontSize: 20,
-      marginTop: 30,
-      color: '#FFF',
-    },
-    circle: {
-      width: 20,
-      height: 20,
-      backgroundColor: '#FFF',
-      borderRadius: 10,
-      marginLeft: 5,
-    },
     row: {
       flexDirection: 'row',
       marginTop: 50,
