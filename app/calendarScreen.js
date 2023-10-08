@@ -1,12 +1,12 @@
 import {React} from 'react';
 import { View, Text,Pressable,StyleSheet } from 'react-native';
 import baseStyles from './styles/baseStyles'
-import { Calendar } from 'react-native-calendars';
 import { useRouter,useSearchParams  } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { Calendar } from 'react-native-calendars';
 
 
-export default function CalendarScreen() {
+export default CalendarScreen=()=> {
 
     const router=useRouter();
 
@@ -26,26 +26,21 @@ export default function CalendarScreen() {
     <View style={styles.container }>
         <View style={styles.headerContainer}>
           <Pressable style={styles.backButton} onPress={()=>router.back()}>
-              
+            <Calendar style={{borderRadius:10,elevation:4,margin:40}}
+                  current={date}
+                  onDayPress={()=>eachDayFunction}/>
               <Ionicons name="arrow-back" size={32}></Ionicons>
           </Pressable>
           <Text style={[styles.Title3,styles.pageTitle]} title="test">{month}</Text>
         </View>
         <View >
-            <Calendar style={{borderRadius:10,elevation:4,margin:40}}
-                current={date}
-                onDayPress={eachDayFunction}
-                // markedDates={{
-                //     "2023-04-30":{selected:true,selectedColor:"green"},
-                //     "2023-04-15":{selected:true,selectedColor:"red"}
-                // }}
-            />
+            
         </View>
     </View>
     );
 }
 
-
+ 
 const styles = StyleSheet.create({
     ...baseStyles,
     container: {
