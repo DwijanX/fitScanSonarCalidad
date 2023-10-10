@@ -41,7 +41,7 @@ describe('CalendarScreen', () => {
   });
 
   it('renders the month "October" correctly', () => {
-    const { getByText } = component;
+    const { getByText,getByTestId } = component;
     expect(getByText('October')).toBeTruthy();
     expect(Calendar).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -50,21 +50,17 @@ describe('CalendarScreen', () => {
       }),
       {}
     );
-  });
-  it('triggers the onDayPress function correctly', () => {
-    const { getByTestId } = component;
-    // Find the Calendar component by its test ID
+
     const calendarElement = getByTestId('dateTest');
 
-    // Simulate a button press on the Calendar component
     fireEvent.press(calendarElement);
 
-    // Assert that the replace function is called with the expected parameters
     expect(useRouter().replace).toHaveBeenCalledWith({
       pathname: '/dateScreen',
       params: { date: '2023-10-08' },
     });
   });
+  
 
 
 });

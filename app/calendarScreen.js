@@ -1,10 +1,9 @@
 import {React} from 'react';
-import { View, Text,Pressable,StyleSheet } from 'react-native';
+import { View,StyleSheet } from 'react-native';
 import baseStyles from './styles/baseStyles'
 import { useRouter,useSearchParams  } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons'
 import { Calendar } from 'react-native-calendars';
-
+import BackHeader from './components/BackHeader';
 export default CalendarScreen=()=> {
 
     const router=useRouter();
@@ -23,13 +22,7 @@ export default CalendarScreen=()=> {
     }
     return (
     <View style={styles.container }>
-        <View style={styles.headerContainer}>
-          <Pressable style={styles.backButton} onPress={()=>router.back()}>
-            
-              <Ionicons name="arrow-back" size={32}></Ionicons>
-          </Pressable>
-          <Text style={[styles.Title3,styles.pageTitle]} title="test">{month}</Text>
-        </View>
+        <BackHeader pageTitle={month}></BackHeader>
         <View >
         <Calendar style={{borderRadius:10,elevation:4,margin:40}}
                   data-testid="dateTest"
