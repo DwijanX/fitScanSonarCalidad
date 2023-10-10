@@ -34,7 +34,7 @@ export default CalendarScreen=()=> {
         <Calendar style={{borderRadius:10,elevation:4,margin:40}}
                   data-testid="dateTest"
                   current={date}
-                  onDayPress={()=>eachDayFunction}/>
+                  onDayPress={eachDayFunction}/>
         </View>
     </View>
     );

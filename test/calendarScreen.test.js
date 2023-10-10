@@ -1,13 +1,13 @@
 import { render, fireEvent } from '@testing-library/react-native';
 import CalendarScreen from '../app/calendarScreen';
 import { Calendar } from 'react-native-calendars';
-
+import { useRouter } from 'expo-router';
 // Define your custom Calendar component
 const CustomCalendar = ({ current, onDayPress }) => {
   return (
-    <p onPress={() => onDayPress({ dateString: '2023-10-08' })} testID="dateTest">
+    <div onPress={()=>onDayPress({dateString:current})} testID="dateTest">
       {current}
-    </p>
+    </div>
   );
 };
 
@@ -22,11 +22,12 @@ jest.mock('react-native-calendars', () => ({
 jest.mock('expo-router', () => {
   const useRouter = jest.fn();
   const useSearchParams = jest.fn(() => ({ month: 'October', date: '2023-10-08' }));
-  const replace = jest.fn(); // Mock the replace function
+  useRouter.mockReturnValue({
+    replace: jest.fn(), // Mock the replace function
+  });
   return {
     useRouter,
     useSearchParams,
-    replace,
   };
 });
 
@@ -49,6 +50,20 @@ describe('CalendarScreen', () => {
       }),
       {}
     );
+  });
+  it('triggers the onDayPress function correctly', () => {
+    const { getByTestId } = component;
+    // Find the Calendar component by its test ID
+    const calendarElement = getByTestId('dateTest');
+
+    // Simulate a button press on the Calendar component
+    fireEvent.press(calendarElement);
+
+    // Assert that the replace function is called with the expected parameters
+    expect(useRouter().replace).toHaveBeenCalledWith({
+      pathname: '/dateScreen',
+      params: { date: '2023-10-08' },
+    });
   });
 
 
