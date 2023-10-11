@@ -1,0 +1,5 @@
+sonar-scanner \
+  -Dsonar.projectKey=fitscan-tests \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_d85a2de1aa9efc2995bdcbbc91f7f11bb519035b
