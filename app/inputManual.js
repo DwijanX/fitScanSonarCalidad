@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons/Ionicons";
 import baseStyles from "./styles/baseStyles";
 import { useRouter } from "expo-router";
-const { useFonts } = require("expo-font");
+import { useFonts } from "expo-font";
 import * as database from "./dataBase/databaseCalls";
 
 function InputManual() {
