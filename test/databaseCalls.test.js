@@ -24,14 +24,12 @@ describe('saveCaloriesForUser', () => {
     const username = 'testUser';
     const newCalories = 200;
     const docRef="docref"
-    let userMaxCalories = {[username]:150};
     firestore.doc.mockReturnValue(docRef);
 
-    await saveCaloriesForUser(username, newCalories,userMaxCalories);
+    await saveCaloriesForUser(username, newCalories);
 
     expect(firestore.doc).toHaveBeenCalledWith(db, 'User', username);
     expect(firestore.updateDoc).toHaveBeenCalledWith(docRef,{"dailyCalories": newCalories});
-    expect(userMaxCalories[username]).toEqual(newCalories);
   });
 
 });
@@ -122,6 +120,12 @@ describe('getUserCalories', () => {
   
       expect(result).toEqual([]);
     });
+    it('should handle empty ingredients array', async () => {
+      const ingredients = [];
+      const result = await getCalories(ingredients);
+  
+      expect(result).toEqual([]);
+    });
   });
   describe('getFoodOfADate', () => {
     afterEach(() => {
@@ -175,6 +179,22 @@ describe('getUserCalories', () => {
       const expectedData = {
         dish1: 100,
         dish2: 200,
+      };
+  
+      await newDishesConsumed(username, dishes, calories, date);
+  
+      expect(firestore.setDoc).toHaveBeenCalledWith(dateRef, expectedData, { merge: true });
+    });
+    it('should handle non existent dishes array', async () => {
+      const username = 'testUser';
+      const date = '2023-10-14';
+      const dishes = [];
+      const calories = [];
+  
+      const dateRef = firestore.doc(db, `User/${username}/Days`, date);
+  
+      const expectedData = {
+        
       };
   
       await newDishesConsumed(username, dishes, calories, date);
