@@ -3,10 +3,10 @@ import * as firestore from "firebase/firestore";
 
 let UserMaxCalories = {}
 
-export async function saveCaloriesForUser(username,calories,userMaxCalories=UserMaxCalories)
+export async function saveCaloriesForUser(username,calories)
 {
     const userRef = firestore.doc(db, "User",username);
-    userMaxCalories[username] = calories;
+    UserMaxCalories[username] = calories;
     await firestore.updateDoc(userRef, {
         dailyCalories: calories
       });
@@ -14,11 +14,11 @@ export async function saveCaloriesForUser(username,calories,userMaxCalories=User
 
 export async function getUserCalories(username,userMaxCalories=UserMaxCalories)
 {
-    const userRef = firestore.doc(db, "User",username);
     if (Object.keys(userMaxCalories).includes(username))
     {
       return userMaxCalories[username]
     }
+    const userRef = firestore.doc(db, "User",username);
     const docSnap = await firestore.getDoc(userRef);
     console.log(docSnap)
     if (docSnap.exists()) {
@@ -31,25 +31,24 @@ export async function getUserCalories(username,userMaxCalories=UserMaxCalories)
 
 export async function getCalories(ingredients)
 {
-    const counts = {};
-    for (const num of ingredients) {
-    counts[num] = counts[num] ? counts[num] + 1 : 1;
-    }
+    const counts = ingredients.reduce((acc, ingredient) => {
+      acc[ingredient] = (acc[ingredient] || 0) + 1;
+      return acc;
+    }, {});
     let uniqueIngredients=Object.keys(counts)
     let answerList=[]
     for (const uniqueIngredient of uniqueIngredients) {
       const docRef = firestore.doc(db, "Food", uniqueIngredient);
-        const docSnap = await firestore.getDoc(docRef);
-
-        if (docSnap.exists()) {
-            let foodData={ nombre: docSnap.data()["nombre"], calorias: docSnap.data()["calories"] }
-            for(let times=0;times<counts[uniqueIngredient];times++)
-            {
-                answerList.push(foodData)
-            }
-          } else {
-            console.log("No such document!");
-          }
+      const docSnap = await firestore.getDoc(docRef);
+      if (docSnap.exists()) {
+        let foodData={ nombre: docSnap.data()["nombre"], calorias: docSnap.data()["calories"] }
+        const times = counts[uniqueIngredient];
+        Array.from({ length: times }, () => answerList.push(foodData));
+        
+      } 
+      else {
+          console.log("No such document!");
+      }
     }
     return answerList
 }
@@ -59,7 +58,6 @@ export async function getFoodOfADate(username,date)
     let collection='User/'+username+'/Days'
     const dateRef = firestore.doc(db, collection,date);
     const docSnap = await firestore.getDoc(dateRef);
-    console.log(docSnap)
     if (docSnap.exists()) {
         return docSnap.data();
       } else {
@@ -73,9 +71,8 @@ export async function newDishesConsumed(username,dishes,calories,date)
     const dateRef = firestore.doc(db, collection,date);
     let objToSave={}
 
-    for(let i=0;i<dishes.length;i++)
-    {
-      objToSave[dishes[i]]=calories[i]
-    }
+    dishes.forEach((dish, index) => {
+      objToSave[dish] = calories[index];
+    });
     await firestore.setDoc(dateRef, objToSave, {merge:true});
 }
