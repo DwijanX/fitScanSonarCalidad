@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 import User from "../app/user"; // Update the import path based on your project structure
 
-jest.mock("../app/dataBase/database", () => ({
+jest.mock("../app/dataBase/database.config", () => ({
   db: {
     doc: jest.fn(),
     updateDoc: jest.fn(),
