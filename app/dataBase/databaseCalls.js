@@ -56,7 +56,6 @@ export async function getCalories(ingredients)
 
 export async function getFoodOfADate(username,date)
 {
-    
     let collection='User/'+username+'/Days'
     const dateRef = firestore.doc(db, collection,date);
     const docSnap = await firestore.getDoc(dateRef);
@@ -79,13 +78,4 @@ export async function newDishesConsumed(username,dishes,calories,date)
       objToSave[dishes[i]]=calories[i]
     }
     await firestore.setDoc(dateRef, objToSave, {merge:true});
-}
-
-async function loadIngredient(ingredient,calories)
-{
-    await firestore.setDoc(firestore.doc(db, "Food", ingredient), 
-    {
-        "nombre":ingredient,
-        "calories":calories
-    });
 }
