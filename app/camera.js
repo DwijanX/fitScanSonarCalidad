@@ -60,7 +60,11 @@ export default function FScamera() {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.headerContainer}>
-        <Pressable style={styles.backButton} onPress={() => router.back()}>
+        <Pressable
+          testID="back-button"
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
           <Ionicons name="arrow-back" size={32}></Ionicons>
         </Pressable>
         <Text style={[styles.Title3, styles.pageTitle]} title="test">
@@ -68,7 +72,7 @@ export default function FScamera() {
           Photo Scan
         </Text>
       </View>
-      <View style={styles.imageContainer}>
+      <View testID="image-container" style={styles.imageContainer}>
         {image != null ? (
           <Image source={{ uri: image }} style={styles.camera} />
         ) : (
@@ -76,12 +80,17 @@ export default function FScamera() {
             style={styles.camera}
             type={cameraType}
             ref={cameraRef}
+            testID="camera-component"
           ></Camera>
         )}
       </View>
       <View style={styles.buttonContainer}>
         {image == null ? (
-          <Pressable style={styles.cameraButton} onPress={takePicture}>
+          <Pressable
+            testID="take-picture-button"
+            style={styles.cameraButton}
+            onPress={takePicture}
+          >
             <Ionicons name="camera" size={50}></Ionicons>
           </Pressable>
         ) : (
@@ -89,10 +98,15 @@ export default function FScamera() {
             <Pressable
               style={[styles.cameraButton, styles.noButton]}
               onPress={refreshPhoto}
+              testID="refresh-button"
             >
               <Ionicons name="close-circle-outline" size={32}></Ionicons>
             </Pressable>
-            <Pressable style={styles.cameraButton} onPress={sendPhotoToAnalyze}>
+            <Pressable
+              style={styles.cameraButton}
+              onPress={sendPhotoToAnalyze}
+              testID="analyze-button"
+            >
               <Ionicons name="checkmark-circle" size={32}></Ionicons>
             </Pressable>
           </View>
