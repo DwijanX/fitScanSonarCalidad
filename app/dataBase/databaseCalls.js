@@ -1,40 +1,32 @@
 import  {db} from "./database"
 import * as firestore from "firebase/firestore"; 
 
-let userMaxCalories = {}
+let UserMaxCalories = {}
 
-export async function saveCaloriesForUser(username,calories)
+export async function saveCaloriesForUser(username,calories,userMaxCalories=UserMaxCalories)
 {
     const userRef = firestore.doc(db, "User",username);
-    if (Object.keys(userMaxCalories).includes(username))
-      {
-        userMaxCalories[username] = calories;
-      }
+    userMaxCalories[username] = calories;
     await firestore.updateDoc(userRef, {
         dailyCalories: calories
       });
 }
 
-export async function getUserCalories(username)
+export async function getUserCalories(username,userMaxCalories=UserMaxCalories)
 {
-
     const userRef = firestore.doc(db, "User",username);
     if (Object.keys(userMaxCalories).includes(username))
-      {
-        return userMaxCalories[username]
-      }
+    {
+      return userMaxCalories[username]
+    }
     const docSnap = await firestore.getDoc(userRef);
     console.log(docSnap)
     if (docSnap.exists()) {
-      if (Object.keys(userMaxCalories).includes(username)=== false)
-      {
         userMaxCalories[username] = docSnap.data()["dailyCalories"];
-      }
         return userMaxCalories[username];
       } else {
-        return []
+        return undefined
       }
-
 }
 
 export async function getCalories(ingredients)
@@ -48,7 +40,7 @@ export async function getCalories(ingredients)
     for (const uniqueIngredient of uniqueIngredients) {
       const docRef = firestore.doc(db, "Food", uniqueIngredient);
         const docSnap = await firestore.getDoc(docRef);
-        
+
         if (docSnap.exists()) {
             let foodData={ nombre: docSnap.data()["nombre"], calorias: docSnap.data()["calories"] }
             for(let times=0;times<counts[uniqueIngredient];times++)
