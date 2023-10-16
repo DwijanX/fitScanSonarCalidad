@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View, TextInput } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons/Ionicons";
 import baseStyles from "./styles/baseStyles";
 import { useRouter } from "expo-router";
 import { useFonts } from "expo-font";
