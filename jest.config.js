@@ -1,5 +1,9 @@
 const config = {
-  collectCoverageFrom: ["app/**/*.{js,jsx,ts,tsx}", "!<rootDir>/node_modules/"],
+  collectCoverageFrom: [
+    "app/**/*.{js,jsx,ts,tsx}", 
+    "!<rootDir>/node_modules/",
+    "!**/*.config.js",
+  ],
   verbose: true,
   setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"],
   preset: "jest-expo",

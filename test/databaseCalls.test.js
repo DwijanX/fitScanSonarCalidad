@@ -1,9 +1,9 @@
 import { saveCaloriesForUser,getUserCalories,getCalories,getFoodOfADate,newDishesConsumed } from '../app/dataBase/databaseCalls';
-import { db } from '../app/dataBase/database';
+import { db } from '../app/dataBase/database.config';
 import * as firestore from "firebase/firestore"; 
 
 
-jest.mock('../app/dataBase/database', () => ({
+jest.mock('../app/dataBase/database.config', () => ({
     db: {
       doc: jest.fn(),
       updateDoc: jest.fn(),

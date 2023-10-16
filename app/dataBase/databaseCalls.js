@@ -1,4 +1,4 @@
-import  {db} from "./database"
+import  {db} from "./database.config"
 import * as firestore from "firebase/firestore"; 
 
 let UserMaxCalories = {}
