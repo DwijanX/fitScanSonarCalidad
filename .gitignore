@@ -17,6 +17,7 @@ web-build/
 # macOS
 .DS_Store
 .run-sonar.txt
+.scannerwork/report-task.txt
 # Xcode
 !**/*.xcodeproj
 !**/*.pbxproj
