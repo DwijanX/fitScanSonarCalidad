@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View, TextInput } from "react-native";
-import { Ionicons } from "@expo/vector-icons/Ionicons";
 import baseStyles from "./styles/baseStyles";
 import { useRouter } from "expo-router";
 import { useFonts } from "expo-font";
 import * as database from "./dataBase/databaseCalls";
+import BackHeader from "./components/BackHeader";
 
 function InputManual() {
   const router = useRouter();
@@ -27,17 +27,11 @@ function InputManual() {
     database.newDishesConsumed("juan", [nombre], [parseInt(calorias)], date);
     router.back();
   };
-
+  
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Pressable style={styles.backButton} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={32}></Ionicons>
-        </Pressable>
-        <Text style={[styles.Title3, styles.pageTitle]} title="test">
-          Input Manual
-        </Text>
-      </View>
+      <BackHeader pageTitle={"Input Manual"}></BackHeader>
+      
       <View style={styles.box}>
         <Text style={styles.label}>Nombre</Text>
         <TextInput
