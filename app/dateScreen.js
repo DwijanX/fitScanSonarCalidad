@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as database from "./dataBase/databaseCalls";
 import FoodInDay from "./components/FoodInDay";
+import BackHeader from "./components/BackHeader";
 
 export default function DateScreen() {
   const router = useRouter();
@@ -20,37 +21,28 @@ export default function DateScreen() {
   let fecha = date;
 
   useEffect(() => {
-    let fecha = date.replace(/-/g, "_");
-    const getFood = async () => {
-      let alimentosDatabase = await database.getFoodOfADate("juan", fecha);
-      let userCalories = await database.getUserCalories("juan");
-      userCalories = parseInt(parseInt(userCalories["juan"]));
-      let totalCalories = 0;
-      let alimentosKeys = Object.keys(alimentosDatabase);
-      for (const alimentosKey of alimentosKeys) {
-        totalCalories += alimentosDatabase[alimentosKey];
-      }
-      setAlimentos(alimentosDatabase);
-      setCalories(totalCalories);
-      setDietaMeta(userCalories - totalCalories);
-    };
-    getFood();
-  }, []);
+    if (date) {
+      let fecha = date.replace(/-/g, "_");
+      const getFood = async () => {
+        let alimentosDatabase = await database.getFoodOfADate("juan", fecha);
+        let userCalories = await database.getUserCalories("juan");
+        userCalories = parseInt(parseInt(userCalories["juan"]));
+        let totalCalories = 0;
+        let alimentosKeys = Object.keys(alimentosDatabase);
+        for (const alimentosKey of alimentosKeys) {
+          totalCalories += alimentosDatabase[alimentosKey];
+        }
+        setAlimentos(alimentosDatabase);
+        setCalories(totalCalories);
+        setDietaMeta(userCalories - totalCalories);
+      };
+      getFood();
+    }
+  }, [date]);
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.headerContainer}>
-        <Pressable
-          testID="back-button"
-          style={styles.backButton}
-          onPress={() => router.back()}
-        >
-          <Ionicons name="arrow-back" size={32}></Ionicons>
-        </Pressable>
-        <Text style={[styles.Title3, styles.pageTitle]} title="test">
-          {fecha}
-        </Text>
-      </View>
+      <BackHeader pageTitle={date}></BackHeader>
       <FoodInDay
         alimentos={alimentos}
         totalCalories={totalCalories}
