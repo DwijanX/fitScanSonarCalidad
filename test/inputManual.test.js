@@ -1,5 +1,8 @@
 // Import necessary dependencies from React Native
 import { Pressable, TextInput } from "react-native";
+import { render, fireEvent } from '@testing-library/react-native';
+import InputManual from '../app/inputManual';
+import * as database from "../app/dataBase/databaseCalls";
 
 // Mock TextInput component
 jest.mock(
@@ -20,10 +23,6 @@ jest.mock("react-native/Libraries/Components/Pressable/Pressable", () => {
 
 // Now you can import and use Pressable and TextInput in your tests as usual
 
-import { render, screen, fireEvent } from "@testing-library/react-native";
-import InputManual from "../app/inputManual";
-import * as database from "../app/dataBase/databaseCalls";
-
 jest.mock("expo-router", () => ({
   useRouter: jest.fn(),
 }));
@@ -35,9 +34,19 @@ jest.mock("../app/dataBase/databaseCalls", () => ({
 }));
 
 describe("InputManual component", () => {
-  it("renders and handles form input and submission", () => {
-    render(<InputManual />);
+  let component;
 
+  beforeEach(() => {
+    component = render(<InputManual />);;
+  });
+
+  it("renders and handles form input and submission", () => {
+  
+    const pageTitle = "Input Manual";
+    const { getByText } = component;
+    // Verifica que el título se muestre correctamente en el encabezado
+    expect(getByText(pageTitle)).toBeTruthy();
+    
     // Simulate input changes
     const nombreInput = screen.getByPlaceholderText("Nombre del platillo");
     const caloriasInput = screen.getByPlaceholderText("Cantidad de calorías");
