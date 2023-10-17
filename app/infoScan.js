@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { useRouter, useSearchParams } from "expo-router";
 import { Pressable, StyleSheet, Text, Image, View } from "react-native";
 import baseStyles from "./styles/baseStyles";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import BackHeader from "./components/BackHeader";
 import Base64 from "Base64";
 import * as database from "./dataBase/databaseCalls";
 
@@ -39,14 +39,7 @@ export default function InfoScan() {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.headerContainer}>
-        <Pressable style={styles.backButton} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={32} />
-        </Pressable>
-        <Text style={[styles.Title3, styles.pageTitle]} title="test">
-          Photo Scan
-        </Text>
-      </View>
+      <BackHeader pageTitle={"Photo Scan"}></BackHeader>
 
       <View style={styles.imageContainer}>
         {image ? (
