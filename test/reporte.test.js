@@ -10,13 +10,12 @@ jest.mock("../app/dataBase/databaseCalls", () => ({
 
 jest.mock("expo-router", () => ({
   useRouter: jest.fn(() => ({ back: jest.fn() })),
-  useSearchParams: jest.fn(() => ({ date: "2023-10-16" })),
+  useSearchParams: jest.fn(() => ({ date: "2023-10-17" })),
 }));
 
 jest.fn().mockReturnValue([true, null]);
 
 test("renders Reporte correctly", async () => {
-  
   // Mock the database calls with sample data
   database.getFoodOfADate.mockResolvedValue({
     zapallo: 100,
@@ -29,7 +28,7 @@ test("renders Reporte correctly", async () => {
 
   let now = new Date();
   now.setHours(now.getHours() - 4);
-  let fecha = "2023-10-16"
+  let fecha = "2023-10-17";
 
   const pageTitle = fecha;
   const { getByText } = component;
@@ -42,17 +41,16 @@ test("renders Reporte correctly", async () => {
     expect(screen.getByText("Alimentos:")).toBeTruthy();
     expect(screen.getByText(/zapallo: 100/)).toBeTruthy();
     expect(screen.getByText(/cebolla: 200/)).toBeTruthy();
-    expect(screen.getByText("2023-10-16")).toBeTruthy(); // Replace this with the expected date format
+    expect(screen.getByText("2023-10-17")).toBeTruthy(); // Replace this with the expected date format
     expect(screen.getByText("cumpliste Dieta")).toBeTruthy();
   });
 
   // Check if the database calls were made with the correct arguments
-  expect(database.getFoodOfADate).toHaveBeenCalledWith("juan", "2023_10_16");
+  expect(database.getFoodOfADate).toHaveBeenCalledWith("juan", "2023_10_17");
   expect(database.getUserCalories).toHaveBeenCalledWith("juan");
 });
 
 test("renders Reporte correctly if you overeat", async () => {
-  
   // Mock the database calls with sample data
   database.getFoodOfADate.mockResolvedValue({
     zapallo: 1000,
@@ -65,7 +63,7 @@ test("renders Reporte correctly if you overeat", async () => {
 
   let now = new Date();
   now.setHours(now.getHours() - 4);
-  let fecha = "2023-10-16"
+  let fecha = "2023-10-17";
 
   const pageTitle = fecha;
   const { getByText } = component;
@@ -78,20 +76,18 @@ test("renders Reporte correctly if you overeat", async () => {
     expect(screen.getByText("Alimentos:")).toBeTruthy();
     expect(screen.getByText(/zapallo: 1000/)).toBeTruthy();
     expect(screen.getByText(/cebolla: 2000/)).toBeTruthy();
-    expect(screen.getByText("2023-10-16")).toBeTruthy(); // Replace this with the expected date format
+    expect(screen.getByText("2023-10-17")).toBeTruthy(); // Replace this with the expected date format
     expect(screen.getByText("no Cumpliste Dieta")).toBeTruthy();
   });
 
   // Check if the database calls were made with the correct arguments
-  expect(database.getFoodOfADate).toHaveBeenCalledWith("juan", "2023_10_16");
+  expect(database.getFoodOfADate).toHaveBeenCalledWith("juan", "2023_10_17");
   expect(database.getUserCalories).toHaveBeenCalledWith("juan");
 });
 
 test("renders Reporte without data", async () => {
-  
   // Mock the database calls with sample data
-  database.getFoodOfADate.mockResolvedValue({
-  });
+  database.getFoodOfADate.mockResolvedValue({});
   database.getUserCalories.mockResolvedValue(2000);
 
   // Render the component
@@ -99,7 +95,7 @@ test("renders Reporte without data", async () => {
 
   let now = new Date();
   now.setHours(now.getHours() - 4);
-  let fecha = "2023-10-16"
+  let fecha = "2023-10-17";
 
   const pageTitle = fecha;
   const { getByText } = component;
@@ -113,10 +109,10 @@ test("renders Reporte without data", async () => {
     expect(screen.getByText("no hay datos hoy")).toBeTruthy();
     expect(screen.queryByText(/zapallo: 100/)).toBeNull(); // No hay datos de alimentos presentes
     expect(screen.queryByText(/cebolla: 200/)).toBeNull(); // No hay datos de alimentos presentes
-    expect(screen.getByText("2023-10-16")).toBeTruthy(); // Ajusta esto al formato de fecha esperado
+    expect(screen.getByText("2023-10-17")).toBeTruthy(); // Ajusta esto al formato de fecha esperado
   });
 
   // Check if the database calls were made with the correct arguments
-  expect(database.getFoodOfADate).toHaveBeenCalledWith("juan", "2023_10_16");
+  expect(database.getFoodOfADate).toHaveBeenCalledWith("juan", "2023_10_17");
   expect(database.getUserCalories).toHaveBeenCalledWith("juan");
 });
