@@ -1,75 +1,44 @@
-// Import necessary dependencies from React Native
-import { Pressable, TextInput } from "react-native";
-import { render, fireEvent } from '@testing-library/react-native';
-import InputManual from '../app/inputManual';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react-native";
+import InputManual from "../app/inputManual"; // Adjust the import path based on your project structure
 import * as database from "../app/dataBase/databaseCalls";
-
-// Mock TextInput component
-jest.mock(
-  "react-native/Libraries/Components/TextInput/TextInput",
-  () => "TextInput"
-);
-
-// Mock Pressable component
-jest.mock("react-native/Libraries/Components/Pressable/Pressable", () => {
-  const RealPressable = jest.requireActual(
-    "react-native/Libraries/Components/Pressable/Pressable"
-  );
-  const MockPressable = jest.fn((props) => {
-    return RealPressable(props, false);
-  });
-  return MockPressable;
-});
-
-// Now you can import and use Pressable and TextInput in your tests as usual
-
+import { useNavigation } from "@react-navigation/native";
 jest.mock("expo-router", () => ({
-  useRouter: jest.fn(),
+  useRouter: jest.fn(() => ({ back: jest.fn() })),
+  useSearchParams: jest.fn(() => ({ date: "2023-10-17" })),
 }));
 
-jest.mock("@expo/vector-icons/Ionicons", () => "Ionicons");
+jest.mock("@react-navigation/native", () => ({
+  useNavigation: jest.fn(),
+}));
 
 jest.mock("../app/dataBase/databaseCalls", () => ({
   newDishesConsumed: jest.fn(),
 }));
 
-describe("InputManual component", () => {
-  let component;
-
-  beforeEach(() => {
-    component = render(<InputManual />);;
+test("sendFood function calls database.newDishesConsumed and router.back() with correct arguments", () => {
+  const mockBack = jest.fn();
+  useNavigation.mockReturnValue({
+    back: mockBack,
   });
 
-  it("renders and handles form input and submission", () => {
-  
-    const pageTitle = "Input Manual";
-    const { getByText } = component;
-    // Verifica que el título se muestre correctamente en el encabezado
-    expect(getByText(pageTitle)).toBeTruthy();
-    
-    // Simulate input changes
-    const nombreInput = screen.getByPlaceholderText("Nombre del platillo");
-    const caloriasInput = screen.getByPlaceholderText("Cantidad de calorías");
-    fireEvent.changeText(nombreInput, "Ejemplo de comida");
-    fireEvent.changeText(caloriasInput, "100");
+  const { getByTestId } = render(<InputManual />);
+  const nombreInput = getByTestId("nombre-input"); // Assuming you set a testID on the input field for dish name
+  const caloriasInput = getByTestId("calorias-input"); // Assuming you set a testID on the input field for calories
+  const sendButton = getByTestId("send-button"); // Assuming you set a testID on the button
 
-    // Verify input values
-    expect(nombreInput.props.value).toBe("Ejemplo de comida");
-    expect(caloriasInput.props.value).toBe("100");
+  // Set input values
+  fireEvent.changeText(nombreInput, "Zapallo");
+  fireEvent.changeText(caloriasInput, "100");
 
-    // Call the submit function
-    fireEvent.press(screen.getByText("Añadir"));
+  // Trigger sendFood function
+  fireEvent.press(sendButton);
 
-    // Verify if the database function was called with the correct arguments
-    expect(database.newDishesConsumed).toHaveBeenCalledWith(
-      "juan",
-      ["Ejemplo de comida"],
-      [100],
-      expect.any(String)
-    );
-  });
-});
-
-afterEach(() => {
-  jest.clearAllMocks();
+  // Check if database.newDishesConsumed and router.back() were called with correct arguments
+  expect(database.newDishesConsumed).toHaveBeenCalledWith(
+    "juan",
+    ["Zapallo"],
+    [100],
+    "2023_10_17"
+  );
 });
