@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import baseStyles from "./styles/baseStyles";
 import { useRouter } from "expo-router";
 import * as database from "./dataBase/databaseCalls";
+import BackHeader from "./components/BackHeader";
 
 function User() {
   const router = useRouter();
@@ -18,19 +19,8 @@ function User() {
 
   return (
     <View style={styles.container} testID="user-component">
-      <View style={styles.headerContainer}>
-        <Pressable
-          style={styles.backButton}
-          onPress={() => router.back()}
-          testID="back-button"
-        >
-          <Ionicons name="arrow-back" size={32}></Ionicons>
-        </Pressable>
-        <Text style={[styles.Title3, styles.pageTitle]} title="test">
-          {" "}
-          Usuario
-        </Text>
-      </View>
+      <BackHeader pageTitle={" Usuario"}></BackHeader>
+
       <View style={styles.box}>
         <Text style={styles.label}>Nombre</Text>
         <TextInput
