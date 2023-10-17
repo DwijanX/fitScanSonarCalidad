@@ -6,6 +6,7 @@ import { useRouter } from "expo-router";
 import { useFonts } from "expo-font";
 import * as database from "./dataBase/databaseCalls";
 import FoodInDay from "./components/FoodInDay";
+import BackHeader from "./components/BackHeader";
 
 function Reporte() {
   const router = useRouter();
@@ -55,14 +56,7 @@ function Reporte() {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.headerContainer}>
-        <Pressable style={styles.backButton} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={32}></Ionicons>
-        </Pressable>
-        <Text style={[styles.Title3, styles.pageTitle]} title="test">
-          {fecha}
-        </Text>
-      </View>
+      <BackHeader pageTitle={fecha}></BackHeader>
       <FoodInDay alimentos={alimentos} totalCalories={totalCalories}></FoodInDay>
       {totalCalories != 0 ? (
         <View
