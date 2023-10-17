@@ -76,9 +76,9 @@ export default function App(navigation) {
         </Pressable>
       </View>
       <Pressable
+        testID="diary-button"
         style={[styles.box, styles.box3]}
         onPress={() => router.push("/meses_diarios")}
-        testID="diary-button"
       >
         <Text style={styles.boxText}>Mi Diario</Text>
         <Ionicons name="book-outline" size={100}></Ionicons>

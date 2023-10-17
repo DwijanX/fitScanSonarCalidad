@@ -30,11 +30,6 @@ export default function DateScreen() {
       for (const alimentosKey of alimentosKeys) {
         totalCalories += alimentosDatabase[alimentosKey];
       }
-
-      console.log(totalCalories);
-      console.log(userCalories);
-      console.log(userCalories - totalCalories);
-
       setAlimentos(alimentosDatabase);
       setCalories(totalCalories);
       setDietaMeta(userCalories - totalCalories);

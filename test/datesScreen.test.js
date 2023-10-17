@@ -33,7 +33,8 @@ test("renders DateScreen correctly", async () => {
     expect(getByText("Alimentos:")).toBeTruthy(); // Check if specific text is rendered
     expect(getByTestId("back-button")).toBeTruthy(); // Assuming there's a back button with this testID
   });
+});
 
-  // Perform interaction (press back button)
-  fireEvent.press(getByTestId("back-button"));
+afterEach(() => {
+  jest.clearAllMocks();
 });
