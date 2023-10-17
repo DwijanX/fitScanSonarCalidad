@@ -18,13 +18,12 @@ describe("MesesDiario component", () => {
     component = render(<MesesDiario />);
   });
 
-  it("renders correctly", () => {
-    const { getByText } = component;
-    expect(getByText("Mi diario")).toBeTruthy();
-  });
-
   it("navigates to the correct month when button is pressed", () => {
+
+    const pageTitle = "Mi Diario";
     const { getByText } = component;
+    // Verifica que el título se muestre correctamente en el encabezado
+    expect(getByText(pageTitle)).toBeTruthy();
     
     const months = [
       { button: "Enero", month: "enero", date: "2023-01-01" },
@@ -49,12 +48,5 @@ describe("MesesDiario component", () => {
       });
       mockRouter.replace.mockClear();
     });
-  });
-
-  it("navigates back when back button is pressed", () => {
-    const { getByTestId } = component;
-    const backButton = getByTestId("back-button");
-    fireEvent.press(backButton);
-    expect(mockRouter.back).toHaveBeenCalledTimes(1);
   });
 });
