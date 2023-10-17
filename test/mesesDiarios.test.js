@@ -8,54 +8,45 @@ jest.mock("expo-router", () => ({
 }));
 
 describe("MesesDiario component", () => {
-  it("renders correctly", () => {
-    const { getByText } = render(<MesesDiario />);
-    expect(getByText("Mi diario")).toBeTruthy();
+  let component;
+  let mockRouter;
+
+  beforeEach(() => {
+    mockRouter = { replace: jest.fn(), back: jest.fn() };
+    useRouter.mockReturnValue(mockRouter);
+
+    component = render(<MesesDiario />);
   });
 
   it("navigates to the correct month when button is pressed", () => {
-    const mockRouter = { replace: jest.fn() };
-    useRouter.mockReturnValue(mockRouter);
 
-    const { getByText } = render(<MesesDiario />);
+    const pageTitle = "Mi Diario";
+    const { getByText } = component;
+    // Verifica que el título se muestre correctamente en el encabezado
+    expect(getByText(pageTitle)).toBeTruthy();
+    
+    const months = [
+      { button: "Enero", month: "enero", date: "2023-01-01" },
+      { button: "Febrero", month: "febrero", date: "2023-02-01" },
+      { button: "Marzo", month: "marzo", date: "2023-03-01" },
+      { button: "Abril", month: "abril", date: "2023-04-01" },
+      { button: "Mayo", month: "mayo", date: "2023-05-01" },
+      { button: "Junio", month: "junio", date: "2023-06-01" },
+      { button: "Julio", month: "julio", date: "2023-07-01" },
+      { button: "Agosto", month: "agosto", date: "2023-08-01" },
+      { button: "Septiembre", month: "septiembre", date: "2023-09-01" },
+      { button: "Octubre", month: "octubre", date: "2023-10-01" },
+      { button: "Noviembre", month: "noviembre", date: "2023-11-01" },
+      { button: "Diciembre", month: "diciembre", date: "2023-12-01" },
+    ];
 
-    fireEvent.press(getByText("Abril"));
-    expect(mockRouter.replace).toHaveBeenCalledWith({
-      pathname: "/calendarScreen",
-      params: { month: "abril", date: "2023-04-01" },
+    months.forEach(({ button, month, date }) => {
+      fireEvent.press(getByText(button));
+      expect(mockRouter.replace).toHaveBeenCalledWith({
+        pathname: "/calendarScreen",
+        params: { month, date },
+      });
+      mockRouter.replace.mockClear();
     });
-  });
-
-  it("navigates to March when March button is pressed", () => {
-    const { getByText } = render(<MesesDiario />);
-    const marchButton = getByText("Marzo");
-    fireEvent.press(marchButton);
-    // Add your assertion here, for example, you could check if the router navigates to March.
-  });
-
-  it("navigates to February when February button is pressed", () => {
-    const { getByText } = render(<MesesDiario />);
-    const februaryButton = getByText("Febrero");
-    fireEvent.press(februaryButton);
-    // Add your assertion here, for example, you could check if the router navigates to February.
-  });
-
-  it("navigates to January when January button is pressed", () => {
-    const { getByText } = render(<MesesDiario />);
-    const januaryButton = getByText("Enero");
-    fireEvent.press(januaryButton);
-    // Add your assertion here, for example, you could check if the router navigates to January.
-  });
-
-  it("navigates back when back button is pressed", () => {
-    const mockRouter = { back: jest.fn() };
-    useRouter.mockReturnValue(mockRouter);
-
-    const { getByTestId } = render(<MesesDiario />);
-    const backButton = getByTestId("back-button");
-
-    fireEvent.press(backButton);
-
-    expect(mockRouter.back).toHaveBeenCalledTimes(1);
   });
 });

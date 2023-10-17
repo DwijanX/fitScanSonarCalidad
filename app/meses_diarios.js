@@ -3,6 +3,7 @@ import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import baseStyles from "./styles/baseStyles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
+import BackHeader from "./components/BackHeader";
 
 export default function MesesDiario() {
   const router = useRouter();
@@ -21,19 +22,7 @@ export default function MesesDiario() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.headerContainer}>
-        <Pressable
-          testID="back-button"
-          style={styles.backButton}
-          onPress={() => router.back()}
-        >
-          <Ionicons name="arrow-back" size={32}></Ionicons>
-        </Pressable>
-        <Text style={[styles.Title3, styles.pageTitle]} title="test">
-          {" "}
-          Mi diario
-        </Text>
-      </View>
+      <BackHeader pageTitle={"Mi Diario"}></BackHeader>
       <View style={styles.row}>
         <Pressable
           style={[styles.box, styles.box1]}
