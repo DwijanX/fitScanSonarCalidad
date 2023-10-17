@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as database from "./dataBase/databaseCalls";
 import FoodInDay from "./components/FoodInDay";
+import BackHeader from "./components/BackHeader";
 
 export default function DateScreen() {
   const router = useRouter();
@@ -39,18 +40,8 @@ export default function DateScreen() {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.headerContainer}>
-        <Pressable
-          testID="back-button"
-          style={styles.backButton}
-          onPress={() => router.back()}
-        >
-          <Ionicons name="arrow-back" size={32}></Ionicons>
-        </Pressable>
-        <Text style={[styles.Title3, styles.pageTitle]} title="test">
-          {fecha}
-        </Text>
-      </View>
+      
+      <BackHeader pageTitle={fecha}></BackHeader>
       <FoodInDay
         alimentos={alimentos}
         totalCalories={totalCalories}

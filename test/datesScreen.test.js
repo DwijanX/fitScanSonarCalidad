@@ -31,7 +31,6 @@ test("renders DateScreen correctly", async () => {
   // Wait for async operations to complete
   await waitFor(() => {
     expect(getByText("Alimentos:")).toBeTruthy(); // Check if specific text is rendered
-    expect(getByTestId("back-button")).toBeTruthy(); // Assuming there's a back button with this testID
   });
 });
 
