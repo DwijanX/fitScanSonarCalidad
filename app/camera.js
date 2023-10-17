@@ -7,6 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Base64 from "Base64";
 import processPhoto from "./apiMediator";
 import * as FileSystem from "expo-file-system";
+import BackHeader from "./components/BackHeader";
 
 export default function FScamera() {
   const [cameraType] = useState(CameraType.back);
@@ -59,19 +60,7 @@ export default function FScamera() {
   }, []);
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.headerContainer}>
-        <Pressable
-          testID="back-button"
-          style={styles.backButton}
-          onPress={() => router.back()}
-        >
-          <Ionicons name="arrow-back" size={32}></Ionicons>
-        </Pressable>
-        <Text style={[styles.Title3, styles.pageTitle]} title="test">
-          {" "}
-          Photo Scan
-        </Text>
-      </View>
+      <BackHeader pageTitle={"Photo Scan"}></BackHeader>
       <View testID="image-container" style={styles.imageContainer}>
         {image != null ? (
           <Image source={{ uri: image }} style={styles.camera} />

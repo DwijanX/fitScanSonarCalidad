@@ -18,30 +18,30 @@ export default function DateScreen() {
 
   const { date } = useSearchParams();
 
-  let fecha = date;
 
   useEffect(() => {
-    let fecha = date.replace(/-/g, "_");
-    const getFood = async () => {
-      let alimentosDatabase = await database.getFoodOfADate("juan", fecha);
-      let userCalories = await database.getUserCalories("juan");
-      userCalories = parseInt(parseInt(userCalories["juan"]));
-      let totalCalories = 0;
-      let alimentosKeys = Object.keys(alimentosDatabase);
-      for (const alimentosKey of alimentosKeys) {
-        totalCalories += alimentosDatabase[alimentosKey];
-      }
-      setAlimentos(alimentosDatabase);
-      setCalories(totalCalories);
-      setDietaMeta(userCalories - totalCalories);
-    };
-    getFood();
-  }, []);
+    if (date) {
+      let fecha = date.replace(/-/g, "_");
+      const getFood = async () => {
+        let alimentosDatabase = await database.getFoodOfADate("juan", fecha);
+        let userCalories = await database.getUserCalories("juan");
+        userCalories = parseInt(parseInt(userCalories["juan"]));
+        let totalCalories = 0;
+        let alimentosKeys = Object.keys(alimentosDatabase);
+        for (const alimentosKey of alimentosKeys) {
+          totalCalories += alimentosDatabase[alimentosKey];
+        }
+        setAlimentos(alimentosDatabase);
+        setCalories(totalCalories);
+        setDietaMeta(userCalories - totalCalories);
+      };
+      getFood();
+    }
+  }, [date]);
 
   return (
     <View style={styles.mainContainer}>
-      
-      <BackHeader pageTitle={fecha}></BackHeader>
+      <BackHeader pageTitle={date}></BackHeader>
       <FoodInDay
         alimentos={alimentos}
         totalCalories={totalCalories}

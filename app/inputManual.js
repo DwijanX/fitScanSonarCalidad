@@ -23,18 +23,18 @@ function InputManual() {
   let date = now.toISOString().substring(0, 10).replace(/-/g, "_");
 
   const sendFood = () => {
-    //console.log("juan",[nombre],[parseInt(calorias)],date)
     database.newDishesConsumed("juan", [nombre], [parseInt(calorias)], date);
     router.back();
   };
-  
+
   return (
     <View style={styles.container}>
       <BackHeader pageTitle={"Input Manual"}></BackHeader>
-      
+
       <View style={styles.box}>
         <Text style={styles.label}>Nombre</Text>
         <TextInput
+          testID="nombre-input" // Set test ID for dish name input field
           style={styles.input}
           onChangeText={setNombre}
           value={nombre}
@@ -44,6 +44,7 @@ function InputManual() {
       <View style={styles.box}>
         <Text style={styles.label}>Calorías</Text>
         <TextInput
+          testID="calorias-input" // Set test ID for calories input field
           style={styles.input}
           onChangeText={setCalorias}
           value={calorias}
@@ -51,7 +52,11 @@ function InputManual() {
           keyboardType="numeric"
         />
       </View>
-      <Pressable style={styles.addButton} onPress={sendFood}>
+      <Pressable
+        testID="send-button" // Set test ID for the 'Añadir' button
+        style={styles.addButton}
+        onPress={sendFood}
+      >
         <Text style={styles.buttonText}>Añadir</Text>
       </Pressable>
     </View>
